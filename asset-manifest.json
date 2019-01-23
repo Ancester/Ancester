@@ -1,9 +1,9 @@
 {
-  "main.js": "/Ancester/static/js/main.41b4f273.chunk.js",
-  "main.js.map": "/Ancester/static/js/main.41b4f273.chunk.js.map",
-  "static/css/1.549cbbbd.chunk.css": "/Ancester/static/css/1.549cbbbd.chunk.css",
-  "static/js/1.5dfe4f1d.chunk.js": "/Ancester/static/js/1.5dfe4f1d.chunk.js",
-  "static/js/1.5dfe4f1d.chunk.js.map": "/Ancester/static/js/1.5dfe4f1d.chunk.js.map",
+  "main.js": "/Ancester/static/js/main.1f7d8529.chunk.js",
+  "main.js.map": "/Ancester/static/js/main.1f7d8529.chunk.js.map",
+  "static/css/1.9e3e2c1f.chunk.css": "/Ancester/static/css/1.9e3e2c1f.chunk.css",
+  "static/js/1.9786ba65.chunk.js": "/Ancester/static/js/1.9786ba65.chunk.js",
+  "static/js/1.9786ba65.chunk.js.map": "/Ancester/static/js/1.9786ba65.chunk.js.map",
   "runtime~main.js": "/Ancester/static/js/runtime~main.f9646e5e.js",
   "runtime~main.js.map": "/Ancester/static/js/runtime~main.f9646e5e.js.map",
   "static/media/grafica.svg": "/Ancester/static/media/grafica.74f1e763.svg",
@@ -39,9 +39,9 @@
   "static/media/paso3.svg": "/Ancester/static/media/paso3.79b8aec9.svg",
   "static/media/videojuego.svg": "/Ancester/static/media/videojuego.a9401ff3.svg",
   "static/media/daniel.png": "/Ancester/static/media/daniel.eb889321.png",
-  "static/media/semantic.min.css": "/Ancester/static/media/icons.962a1bf3.svg",
-  "static/css/1.549cbbbd.chunk.css.map": "/Ancester/static/css/1.549cbbbd.chunk.css.map",
+  "static/media/semantic.min.css": "/Ancester/static/media/brand-icons.13db00b7.eot",
+  "static/css/1.9e3e2c1f.chunk.css.map": "/Ancester/static/css/1.9e3e2c1f.chunk.css.map",
   "index.html": "/Ancester/index.html",
-  "precache-manifest.4817f453afe448327653510cb6c06038.js": "/Ancester/precache-manifest.4817f453afe448327653510cb6c06038.js",
+  "precache-manifest.ffb5cc57ed18b97bbf040ae1574dc743.js": "/Ancester/precache-manifest.ffb5cc57ed18b97bbf040ae1574dc743.js",
   "service-worker.js": "/Ancester/service-worker.js"
 }
