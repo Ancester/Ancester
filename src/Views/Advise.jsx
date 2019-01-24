@@ -26,6 +26,7 @@ const Advise = () => {
                 <Container text>
                     <br />
                     <Header as='h1' inverted textAlign='center'><b>CREAMOS TU WEB GAMER</b></Header>
+                    <br/>
                     <Grid centered>
                         <Image src={Description} height='200' />
                     </Grid>

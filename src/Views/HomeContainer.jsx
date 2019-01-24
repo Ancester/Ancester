@@ -10,14 +10,14 @@ const HomeContainer = () => {
   return (
     <div>
       <CarouselView style={{ marginTop: 0, padding: 0 }} />
-      <Services/>
+      <Services />
       <Header as='h3' textAlign='center'><u>REDES SOCIALES</u></Header>
-      <Segment.Group horizontal style={{marginBottom: '55px'}}>
+      <Segment.Group horizontal style={{ marginBottom: '55px' }}>
         <Segment inverted color='blue'><Image src={Facebook} fluid /></Segment>
         <Segment inverted color='red'><Image src={Youtube} /></Segment>
         <Segment inverted color='yellow'><Image src={Blogger} fluid /></Segment>
       </Segment.Group>
-      <hr/>
+      <hr />
     </div>
   );
 };

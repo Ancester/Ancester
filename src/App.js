@@ -10,10 +10,13 @@ import KnowUs from "./Views/KnowUs";
 import NoMatch from "./Views/NoMatch";
 import WeCreate from "./Views/WeCreate";
 import Advise from "./Views/Advise";
+import Sponsor from "./Views/Sponsor";
+import Marketplace from "./Views/Marketplace";
+import AncesterAcademyHome from "./Views/AncesterAcademyHome";
 
 const rightItems = [
-  { content: "Academy", key: "academy",  to: '/ancester-academy-launcher' },
-  { content: "Marketplace", key: "marketplace",  to: '/' },
+  { content: "Academy", key: "academy",  to: '/ancester-academy' },
+  { content: "Marketplace", key: "marketplace",  to: '/marketplace' },
   { content: "Servicios", key: "servicios", to: '/services' },
   { content: "Conócenos", key: "conócenos",  to: '/know-us' }
 ];
@@ -28,11 +31,14 @@ export default class App extends Component {
             <Route exact path="/" component={HomeContainer} />
             <Route path="/Ancester" component={HomeContainer} />
             <Route path='/login' component={LoginContainer} />
-            <Route path="/ancester-academy-launcher" component={AncesterAcademy} />
+            <Route path="/ancester-academy" component={AncesterAcademy} />
+            <Route path="/ancester-academy-home" component={AncesterAcademyHome} />
             <Route path="/services" component={Services} />
             <Route path="/know-us" component={KnowUs} />
             <Route path="/we-create" component={WeCreate} />
             <Route path="/advise" component={Advise} />
+            <Route path="/sponsor" component={Sponsor} />
+            <Route path="/marketplace" component={Marketplace} />
             <Route component={NoMatch} />
           </Switch>
         </NavContainer>

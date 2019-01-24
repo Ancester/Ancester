@@ -9,7 +9,7 @@ const AncesterAcademy = () => {
     return (
         <div>
             <Grid centered>
-                <Image src={Ancester} />
+                <Image src={Ancester} height='100'/>
             </Grid>
             <Grid columns={3} relaxed >
                 <Grid.Column>

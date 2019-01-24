@@ -4,7 +4,18 @@ import ANCESTER from "../Assets/img/blanco-logo-1.svg";
 
 const Footer = () => {
   return (
-    <Segment inverted vertical style={{ padding: '0.5em 0em', margin: "0em 0em", position: "fixed", bottom: 0, width: "100%" }}>
+    <Segment
+      inverted
+      vertical
+      style={{
+        padding: '0.5em 0em',
+        margin: "0em 0em",
+        position: "fixed",
+        bottom: 0,
+        width: "100%",
+        zIndex:2
+      }}
+    >
       <Container>
         <Grid inverted>
           <Grid.Row textAlign='center'>
@@ -15,10 +26,10 @@ const Footer = () => {
               <Header link="true" inverted as='h4' content='Aportes y Sugerencias' />
             </Grid.Column>
             <Grid.Column textAlign='center' only='computer' computer={4}>
-                <Image centered size='mini' src={ANCESTER} />
+              <Image centered size='mini' src={ANCESTER} />
               <p >
                 Todos los derechos reservados por Ancester
-              </p>              
+              </p>
             </Grid.Column>
             <Grid.Column computer={3} mobile={8} tablet={4}>
               <Header link="true" inverted as='h4' content='Redes Sociales' />

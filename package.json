@@ -1,8 +1,8 @@
 {
   "name": "ancesterweb",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
-  "homepage": "https://Israel-Laguan.github.io/Ancester/",
+  "homepage": "https://ancester.github.io/Ancester/",
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -21,6 +21,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
     "gh-pages": "^1.2.0"
   },
   "eslintConfig": {
