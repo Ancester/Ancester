@@ -4,15 +4,15 @@ import NavContainer from "./Views/NavContainer";
 import HomeContainer from "./Views/HomeContainer";
 import Footer from "./Views/Footer";
 import LoginContainer from "./Views/LoginContainer";
-import Services from "./Views/Services";
-import AncesterAcademy from "./Views/AncesterAcademy";
-import KnowUs from "./Views/KnowUs";
+import Services from "./Views/Services/Services";
+import AncesterAcademy from "./Views/Academy/AncesterAcademy";
+import KnowUs from "./Views/KnowUs/KnowUs";
 import NoMatch from "./Views/NoMatch";
-import WeCreate from "./Views/WeCreate";
-import Advise from "./Views/Advise";
-import Sponsor from "./Views/Sponsor";
+import WeCreate from "./Views/Services/WeCreate";
+import Advise from "./Views/Services/Advise";
+import Sponsor from "./Views/Services/Sponsor";
 import Marketplace from "./Views/Marketplace";
-import AncesterAcademyHome from "./Views/AncesterAcademyHome";
+import AncesterAcademyHome from "./Views/Academy/AncesterAcademyHome";
 
 const rightItems = [
   { content: "Academy", key: "academy",  to: '/ancester-academy' },

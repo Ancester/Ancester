@@ -3,7 +3,6 @@ import _ from 'lodash'
 import faker from 'faker/locale/es'
 import { Container, Grid, Image, Segment, Card, Icon, Header, Button, Rating, Form, Select, Pagination } from 'semantic-ui-react'
 import MarketplaceBanner from '../Assets/img/Marketplace/marketplace.svg'
-import Sell from '../Assets/img/Marketplace/vender.png'
 import SearchCategory from '../Components/SearchBox';
 
 export default class Marketplace extends Component {
@@ -17,7 +16,6 @@ export default class Marketplace extends Component {
 
     render() {
         const { source } = this.state
-        console.log(source)
         return (
             <div>
                 <Container fluid style={{
@@ -49,57 +47,71 @@ export default class Marketplace extends Component {
                     </Grid.Column>
                 </Grid>
                 <br />
+                <Grid centered>
+                    <Grid.Column width={15}>
+                        {Object.keys(source).map(cat => {
+                            const section = source[cat].results.map(item => {
+                                return (
+                                    <Card key={item.title+Math.random()}>
+                                        <div className={'ui slide masked reveal image'} style={{ zIndex: 0 }}>
+                                            <Image src={item.image} className={'visible content'} />
+                                            <Image src={src} className={'hidden content'} />
+                                        </div>
+                                        <Card.Content>
+                                            <Card.Header textAlign={'center'}>
+                                                {item.title}
+                                            </Card.Header>
+                                            <Card.Meta>Joined in 2016</Card.Meta>
+                                            <Card.Description>{item.description}</Card.Description>
 
-                {Object.keys(source).map(cat => {
-                    const section = source[cat].results.map(item => {
-                        return (
-                            <Card key={item.title}>
-                                <div className={'ui slide masked reveal image'} style={{ zIndex: 0 }}>
-                                    <Image src={item.image} className={'visible content'} />
-                                    <Image src={src} className={'hidden content'} />
-                                </div>
-                                <Card.Content>
-                                    <Card.Header textAlign={'center'}>
-                                        {item.title}
-                                    </Card.Header>
-                                    <Card.Meta>Joined in 2016</Card.Meta>
-                                    <Card.Description>{item.description}</Card.Description>
+                                        </Card.Content>
+                                        <Card.Content extra>
+                                            <Button animated='fade'>
+                                                <Button.Content visible><Icon name='shopping cart' /> COMPRAR</Button.Content>
+                                                <Button.Content hidden>{item.price}</Button.Content>
+                                            </Button>
+                                            <Rating icon='heart' defaultRating={(Math.random() * 10) / 2} maxRating={5} />
+                                        </Card.Content>
+                                    </Card>
+                                )
+                            }
+                            )
+                            return (
+                                <Container fluid key={source[cat].name}>
+                                    <Header>{source[cat].name}</Header>
+                                    <Card.Group itemsPerRow={5}>
+                                        {section}
+                                    </Card.Group>
+                                </Container>
+                            )
+                        }
+                        )}
+                    </Grid.Column>
+                    <Grid.Column floated='right' width={6}>
+                        <Pagination
+                            boundaryRange={0}
+                            defaultActivePage={1}
+                            ellipsisItem={null}
+                            firstItem={null}
+                            lastItem={null}
+                            siblingRange={1}
+                            totalPages={10}
+                            style={{ backgroundColor: '#081B24FF' }}
+                            inverted
+                        />
+                    </Grid.Column>
+                </Grid>
 
-                                </Card.Content>
-                                <Card.Content extra>
-                                    <Button>
-                                        <Icon name='shopping cart' />
-                                        {item.price}
-                                    </Button>
-                                    <Rating icon='heart' defaultRating={(Math.random() * 10) / 2} maxRating={5} />
-                                </Card.Content>
-                            </Card>
-                        )
-                    }
-                    )
-                    return (
-                        <Container fluid key={source[cat].name}>
-                            <Header>{source[cat].name}</Header>
-                            <Card.Group itemsPerRow={5}>
-                                {section}
-                            </Card.Group>
-                        </Container>
-                    )
-                }
-                )}
-                <Pagination
-                boundaryRange={0}
-                defaultActivePage={1}
-                ellipsisItem={null}
-                firstItem={null}
-                lastItem={null}
-                siblingRange={1}
-                totalPages={10}
-            />
                 <br />
                 <Grid centered>
-                    <Image src={Sell} />
+                    <Button animated color='facebook' size='huge'>
+                        <Button.Content visible>QUIERO VENDER</Button.Content>
+                        <Button.Content hidden>
+                            <Icon name='arrow right' />
+                        </Button.Content>
+                    </Button>
                 </Grid>
+
                 <br />
                 <hr />
                 <br />

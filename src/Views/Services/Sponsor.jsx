@@ -1,13 +1,13 @@
 import React from 'react'
 import { Header, Container, Segment, Image, Grid } from "semantic-ui-react";
-import JoyStick from '../Assets/img/Advise/videojuego.svg'
-import Chart from '../Assets/img/Advise/grafica.svg'
-import Description from '../Assets/img/Advise/descripcion.svg'
-import Step1 from '../Assets/img/Advise/paso1.svg'
-import Step2 from '../Assets/img/Advise/paso2.svg'
-import Step3 from '../Assets/img/Advise/paso3.svg'
+import Ancester from '../../Assets/img/Sponsor/ancester.svg'
+import Conect from '../../Assets/img/Sponsor/conect.png'
+import Description from '../../Assets/img/Sponsor/description.svg'
+import Step1 from '../../Assets/img/Sponsor/paso1.svg'
+import Step2 from '../../Assets/img/Sponsor/paso2.svg'
+import Step3 from '../../Assets/img/Sponsor/paso3.svg'
 
-const Advise = () => {
+const Sponsor = () => {
     return (
         <Container fluid
             style={{
@@ -18,42 +18,40 @@ const Advise = () => {
             }}
         >
             <div style={{
-                backgroundImage: "url(" + JoyStick + ")",
+                backgroundImage: "url(" + Ancester + ")",
                 backgroundRepeat: 'no-repeat',
                 minHeight: '50%',
                 height: '300px'
             }}>
                 <Container text>
                     <br />
-                    <Header as='h1' inverted textAlign='center'><b>CREAMOS TU WEB GAMER</b></Header>
-                    <br/>
+                    <Header as='h1' inverted textAlign='center'><b>PATROCINATE CON NOSOTROS</b></Header>
+                    <br />
                     <Grid centered>
                         <Image src={Description} height='200' />
                     </Grid>
                 </Container>
             </div>
-            <br />
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div>
                 <Header as='h3' inverted textAlign='center'>REQUISITOS</Header>
                 <Grid columns={3} doubling padded relaxed='very'>
                     <Grid.Column>
-                        <Segment style={{ backgroundColor: 'rgb(102, 96, 163)' }} inverted>
-                            <Image src={Step1} />
-                        </Segment>
+                        <Image src={Step1} />
                     </Grid.Column>
                     <Grid.Column>
-                        <Segment style={{ backgroundColor: 'rgb(102, 96, 163)' }} inverted>
-                            <Image src={Step2} />
-                        </Segment>
+                        <Image src={Step2} />
                     </Grid.Column>
                     <Grid.Column>
-                        <Segment style={{ backgroundColor: 'rgb(102, 96, 163)' }} inverted>
-                            <Image src={Step3} />
-                        </Segment>
+                        <Image src={Step3} />
                     </Grid.Column>
                 </Grid>
                 <Grid centered>
-                    <Image src={Chart} height='300' />
+                    <Image src={Conect} height='100' />
                 </Grid>
                 <Container text>
                     <br />
@@ -68,4 +66,4 @@ const Advise = () => {
     )
 }
 
-export default Advise
+export default Sponsor

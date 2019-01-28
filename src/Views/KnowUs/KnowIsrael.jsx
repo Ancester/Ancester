@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Grid, Image} from 'semantic-ui-react'
-import Israel from '../Assets/img/KnowUs/israel.png'
-import Sv from '../Assets/img/KnowUs/sv.svg'
-import IsraelTexto from '../Assets/img/KnowUs/israel_texto.svg'
+import Israel from '../../Assets/img/KnowUs/israel.png'
+import Sv from '../../Assets/img/KnowUs/sv.svg'
+import IsraelTexto from '../../Assets/img/KnowUs/israel_texto.svg'
 
 
 const KnowIsrael = () => {

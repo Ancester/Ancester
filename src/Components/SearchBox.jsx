@@ -46,7 +46,6 @@ export default class SearchCategory extends Component {
             <Grid>
                 <Grid.Column width={8}>
                     <Search
-                        defaultValue='Buscar...'
                         aligned='left'
                         category
                         loading={isLoading}

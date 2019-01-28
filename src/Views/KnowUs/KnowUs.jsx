@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link, Route } from "react-router-dom";
 import { Container, Grid, Image, Header,Modal } from 'semantic-ui-react'
-import Jumbo from '../Assets/img/KnowUs/jumbo.svg'
-import Daniel from '../Assets/img/KnowUs/daniel.png'
-import Israel from '../Assets/img/KnowUs/israel.png'
-import Honestidad from '../Assets/img/KnowUs/1honestidad.png'
-import Compromiso from '../Assets/img/KnowUs/2compromiso.png'
-import Pasion from '../Assets/img/KnowUs/3pasion.png'
-import Resolucion from '../Assets/img/KnowUs/4resolucion.png'
-import Equipo from '../Assets/img/KnowUs/5equipo.png'
-import Integridad from '../Assets/img/KnowUs/6integridad.png'
+import Jumbo from '../../Assets/img/KnowUs/jumbo.svg'
+import Daniel from '../../Assets/img/KnowUs/daniel.svg'
+import Israel from '../../Assets/img/KnowUs/israel.png'
+import Honestidad from '../../Assets/img/KnowUs/1honestidad.png'
+import Compromiso from '../../Assets/img/KnowUs/2compromiso.png'
+import Pasion from '../../Assets/img/KnowUs/3pasion.png'
+import Resolucion from '../../Assets/img/KnowUs/4resolucion.png'
+import Equipo from '../../Assets/img/KnowUs/5equipo.png'
+import Integridad from '../../Assets/img/KnowUs/6integridad.png'
 import KnowDaniel from './KnowDaniel';
 import KnowIsrael from './KnowIsrael';
 
@@ -25,12 +25,12 @@ const KnowUs = ({ match }) => {
         </Grid.Column>
       </Grid>
       <Header as='h3' textAlign='center'><u>El Equipo</u></Header>
-      <Grid centered columns={2}>
-        <Grid.Column width={6}>
+      <Grid centered>
+        <Grid.Column width={4}>
           <Modal
             trigger={
               <Link as='div' to={`${match.url}/daniel`}>
-                <Image src={Daniel} fluid />
+                <Image src={Daniel} width='240px'/>
               </Link>
             }
           >
@@ -39,7 +39,7 @@ const KnowUs = ({ match }) => {
             </Modal.Content>
           </Modal>
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={4}>
         <Modal
             trigger={
               <Link as='div' to={`${match.url}/israel`}>
@@ -54,23 +54,24 @@ const KnowUs = ({ match }) => {
         </Grid.Column>
       </Grid>
       <Header as='h3' textAlign='center'><u>Nuestros Valores</u></Header>
-      <Grid centered columns={3} >
-        <Grid.Column>
+      
+      <Grid centered>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Honestidad} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Compromiso} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Pasion} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Resolucion} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Equipo} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column computer={4} mobile={6} tablet={5}>
           <Image src={Integridad} />
         </Grid.Column>
       </Grid>

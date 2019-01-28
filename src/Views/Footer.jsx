@@ -17,7 +17,7 @@ const Footer = () => {
       }}
     >
       <Container>
-        <Grid inverted>
+        <Grid inverted centered>
           <Grid.Row textAlign='center'>
             <Grid.Column textAlign='center' computer={3} mobile={8} tablet={4}>
               <Header link="true" inverted as='h4' content='Política y Privacidad' />
