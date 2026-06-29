@@ -1,81 +1,3 @@
-// import React from "react";
-// import { Menu, Segment, Image, Dropdown } from "semantic-ui-react";
-// import ANCESTER from "../Assets/img/blanco-logo-1.svg";
-// const options = [
-//   { key: 1, text: "Choice 1", value: 1 },
-//   { key: 2, text: "Choice 2", value: 2 },
-//   { key: 3, text: "Choice 3", value: 3 }
-// ];
-
-// export default class NavContainer extends React.Component {
-//   state = { activeItem: "home" };
-
-//   handleItemClick = (_e, { name }) => this.setState({ activeItem: name });
-
-//   render() {
-//     const { activeItem } = this.state;
-
-//     return (
-//       <Segment inverted size='mini' style={{padding:0}}>
-//         <Menu inverted secondary  fixed="top" >
-//           <Menu.Item
-//             name="home"
-//             active={activeItem === "home"}
-//             onClick={this.handleItemClick}
-//             as='div'
-//           >
-//             <Link to="/">
-//               <Image src={ANCESTER} size="mini" />
-//             </Link>
-//           </Menu.Item>
-//           <Menu.Item
-//             name="juegos"
-//             active={activeItem === "juegos"}
-//             onClick={this.handleItemClick}
-//             fitted='vertically'
-//           >
-//             <Dropdown text="Juegos" options={options} simple item />
-//           </Menu.Item>
-//           <Menu.Menu position="right">
-//             <Menu.Item
-//               name="academy"
-//               active={activeItem === "academy"}
-//               onClick={this.handleItemClick}
-//             />
-//             <Menu.Item
-//               name="marketplace"
-//               active={activeItem === "marketplace"}
-//               onClick={this.handleItemClick}
-//             />
-//             <Menu.Item
-//               name="servicios"
-//               active={activeItem === "servicios"}
-//               onClick={this.handleItemClick}
-//             />
-//             <Menu.Item
-//               name="conócenos"
-//               active={activeItem === "conócenos"}
-//               onClick={this.handleItemClick}
-//             >
-//               Conócenos
-//             </Menu.Item>
-//             <Menu.Item>
-//               <img src={BarraVertical} height={30} alt="" />
-//             </Menu.Item>
-//             <Menu.Item
-//               name="iniciar sesion"
-//               active={activeItem === "iniciar sesion"}
-//               onClick={this.handleItemClick}
-//               as='div'
-//             >
-//             <Link as='span' to="/login">Iniciar Sesión</Link>
-//             </Menu.Item>
-//           </Menu.Menu>
-//         </Menu>
-//       </Segment>
-//     );
-//   }
-// }
 import _ from "lodash";
 import React, { Component, useState, useEffect } from "react";
 import {
@@ -88,6 +10,7 @@ import {
   Dropdown
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 import BarraVertical from "../Assets/img/barra separadora.svg";
 import ANCESTER from "../Assets/img/blanco-logo-1.svg";
 
@@ -124,6 +47,9 @@ const NavBarMobile = ({
   onToggle,
   rightItems,
   visible,
+  t,
+  changeLanguage,
+  currentLanguage,
 }) => (
     <Sidebar.Pushable>
       <Sidebar
@@ -136,16 +62,19 @@ const NavBarMobile = ({
         width='thin'
       >
         {_.map(rightItems, item => (
-          <Menu.Item {...item} as={Link}/>
+          <Menu.Item key={item.key} content={item.content} to={item.to} as={Link}/>
         ))}
         <Menu.Item
-          name="Gunz"
+          name={t("nav.games")}
           as="a"
         />
         <Menu.Item
-          name="Otro Juego"
+          name={t("nav.otherGame")}
           as="a"
         />
+        <Menu.Item>
+          <LanguageSwitcher t={t} changeLanguage={changeLanguage} currentLanguage={currentLanguage} />
+        </Menu.Item>
       </Sidebar>
       <Sidebar.Pusher
         dimmed={visible}
@@ -160,12 +89,11 @@ const NavBarMobile = ({
             <Icon name="sidebar" />
           </Menu.Item>
           <Menu.Menu position="right">
-
             <Menu.Item
               name="iniciar sesion"
               as='div'
             >
-              <Link as='span' to="/login">Iniciar Sesión</Link>
+              <Link as='span' to="/login">{t("nav.signIn")}</Link>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
@@ -175,30 +103,51 @@ const NavBarMobile = ({
     </Sidebar.Pushable>
   );
 
-const NavBarDesktop = ({ rightItems }) => (
+const NavBarDesktop = ({ rightItems, t, changeLanguage, currentLanguage }) => (
   <Segment inverted size="mini" style={{ padding: 0 }} fixed="top">
     <Menu inverted secondary>
       <Menu.Item as={Link} to='/'>
         <Image size="mini" src={ANCESTER} />
       </Menu.Item>
-      <Dropdown text="Juegos" options={options} simple item />
+      <Dropdown text={t("nav.games")} options={options} simple item />
       <Menu.Menu position="right">
         {_.map(rightItems, item => (
-          <Menu.Item {...item} as={Link}/>
+          <Menu.Item key={item.key} content={item.content} to={item.to} as={Link}/>
         ))}
         <Menu.Item>
           <img src={BarraVertical} height={30} alt="" />
+        </Menu.Item>
+        <Menu.Item>
+          <LanguageSwitcher t={t} changeLanguage={changeLanguage} currentLanguage={currentLanguage} />
         </Menu.Item>
         <Menu.Item
           name="iniciar sesion"
           as='div'
         >
-          <Link as='span' to="/login">Iniciar Sesión</Link>
+          <Link as='span' to="/login">{t("nav.signIn")}</Link>
         </Menu.Item>
       </Menu.Menu>
     </Menu>
   </Segment>
 );
+
+const LanguageSwitcher = ({ t, changeLanguage, currentLanguage }) => {
+  const langOptions = [
+    { key: 'es', text: t("language.es"), value: 'es', flag: 'es' },
+    { key: 'en', text: t("language.en"), value: 'en', flag: 'us' },
+  ];
+
+  return (
+    <Dropdown
+      text={currentLanguage === 'en' ? t("language.en") : t("language.es")}
+      options={langOptions}
+      simple
+      item
+      onChange={(_e, { value }) => changeLanguage(value)}
+      style={{ minWidth: 0 }}
+    />
+  );
+};
 
 const NavBarMobileChildren = ({ children }) => (
   <Container style={{ marginTop: "5em" }}>
@@ -219,13 +168,12 @@ class NavContainer extends Component {
 
   handlePusher = () => {
     const { visible } = this.state;
-
     if (visible) this.setState({ visible: !visible });
   };
 
   handleToggle = () => this.setState({ visible: !this.state.visible });
   render() {
-    const { children, rightItems } = this.props;
+    const { children, rightItems, t, changeLanguage, currentLanguage } = this.props;
     const { visible } = this.state;
     return (
       <div>
@@ -235,12 +183,20 @@ class NavContainer extends Component {
             onToggle={this.handleToggle}
             rightItems={rightItems}
             visible={visible}
+            t={t}
+            changeLanguage={changeLanguage}
+            currentLanguage={currentLanguage}
           >
             <NavBarMobileChildren>{children}</NavBarMobileChildren>
           </NavBarMobile>
         </Responsive>
         <Responsive minWidth={ResponsiveOnlyTablet.minWidth}>
-          <NavBarDesktop rightItems={rightItems} />
+          <NavBarDesktop
+            rightItems={rightItems}
+            t={t}
+            changeLanguage={changeLanguage}
+            currentLanguage={currentLanguage}
+          />
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
       </div>
@@ -248,4 +204,4 @@ class NavContainer extends Component {
   }
 }
 
-export default NavContainer;
+export default withTranslation()(NavContainer);

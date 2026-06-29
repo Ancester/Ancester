@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon } from 'semantic-ui-react'
+import { withTranslation } from 'react-i18next'
 import ANCESTER from "../Assets/img/blanco-logo-1.svg"
 
 const DEMO_MODES = {
@@ -10,13 +11,13 @@ const DEMO_MODES = {
 
 class DemoModal extends Component {
   render() {
-    const { open, mode, onClose } = this.props
+    const { open, mode, onClose, t } = this.props
     const isLogin = mode === DEMO_MODES.LOGIN
-    
+
     return (
       <Modal open={open} onClose={onClose} size='small' dimmer='blurring'>
         <Modal.Header style={{ background: '#081B24', color: '#fff', textAlign: 'center' }}>
-          <Icon name='code' /> Proyecto Demo
+          <Icon name='code' /> {t('login.demoModalTitle')}
         </Modal.Header>
         <Modal.Content style={{ textAlign: 'center', padding: '2em' }}>
           <Icon
@@ -25,27 +26,26 @@ class DemoModal extends Component {
             style={{ color: '#00b5ad', marginBottom: '0.5em' }}
           />
           <Header as='h2' style={{ color: '#081B24' }}>
-            {isLogin ? 'Inicio de Sesión' : 'Registro de Usuario'}
+            {isLogin ? t('login.demoModalLoginHeader') : t('login.demoModalSignupHeader')}
           </Header>
           <p style={{ fontSize: '1.1em', color: '#555', lineHeight: 1.6 }}>
             <Icon name='info circle' color='teal' />
-            Esta es una versión demo del proyecto.
+            {t('login.demoModalInfo')}
             <br /><br />
             {isLogin
-              ? 'El inicio de sesión se vería así. Los usuarios ingresarían sus credenciales para acceder a su panel personal, cursos, marketplace y más.'
-              : 'El registro de nuevos usuarios se vería así. Los interesados completarían un formulario para crear una cuenta en la plataforma.'
+              ? t('login.demoModalLoginDesc')
+              : t('login.demoModalSignupDesc')
             }
           </p>
           <Message info>
-            <Message.Header>🔧 Funcionalidad en desarrollo</Message.Header>
+            <Message.Header>{t('login.demoModalDevHeader')}</Message.Header>
             <p>
-              Esta funcionalidad no está disponible actualmente ya que no contamos con un backend implementado.
-              El proyecto se encuentra en fase de demostración.
+              {t('login.demoModalDevText')}
             </p>
           </Message>
           <div style={{ marginTop: '1.5em' }}>
             <Button color='teal' onClick={onClose}>
-              <Icon name='check' /> Entendido
+              <Icon name='check' /> {t('login.understood')}
             </Button>
           </div>
         </Modal.Content>
@@ -54,7 +54,7 @@ class DemoModal extends Component {
   }
 }
 
-export default class LoginContainer extends Component {
+class LoginContainer extends Component {
   state = {
     demoMode: DEMO_MODES.NONE
   }
@@ -74,6 +74,7 @@ export default class LoginContainer extends Component {
 
   render() {
     const { demoMode } = this.state
+    const { t } = this.props
 
     return (
       <div>
@@ -81,6 +82,7 @@ export default class LoginContainer extends Component {
           open={demoMode !== DEMO_MODES.NONE}
           mode={demoMode}
           onClose={this.handleCloseModal}
+          t={t}
         />
         <div className='login-form'>
           <style>{`
@@ -94,31 +96,31 @@ export default class LoginContainer extends Component {
           <Grid textAlign='center' style={{ height: '100%', marginTop: '3em', borderRadius: "25px" }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450, background: "#081B24FF" }}>
               <Header as='h2' color='teal' textAlign='center'>
-                <Image src={ANCESTER} /> Login
+                <Image src={ANCESTER} /> {t('login.title')}
               </Header>
               <Message warning>
                 <Icon name='info circle' />
-                Versión demo — los datos no se guardan
+                {t('login.demoWarning')}
               </Message>
               <Form size='large'>
                 <Segment stacked>
-                  <Form.Input fluid icon='user' iconPosition='left' placeholder='ID' readOnly />
+                  <Form.Input fluid icon='user' iconPosition='left' placeholder={t('login.idPlaceholder')} readOnly />
                   <Form.Input
                     fluid
                     icon='lock'
                     iconPosition='left'
-                    placeholder='Contraseña'
+                    placeholder={t('login.passwordPlaceholder')}
                     type='password'
                     readOnly
                   />
 
                   <Button color='teal' fluid size='large' onClick={this.handleLoginClick}>
-                    INGRESAR
+                    {t('login.loginButton')}
                   </Button>
                 </Segment>
               </Form>
               <Message>
-                ¿Nuevo por acá? <button type='button' onClick={this.handleSignupClick} style={{ background: 'none', border: 'none', color: '#4183c4', cursor: 'pointer', padding: 0, textDecoration: 'underline', fontSize: 'inherit' }}>Inscríbete</button>
+                {t('login.newHere')} <button type='button' onClick={this.handleSignupClick} style={{ background: 'none', border: 'none', color: '#4183c4', cursor: 'pointer', padding: 0, textDecoration: 'underline', fontSize: 'inherit' }}>{t('login.signUp')}</button>
               </Message>
             </Grid.Column>
           </Grid>
@@ -127,3 +129,5 @@ export default class LoginContainer extends Component {
     )
   }
 }
+
+export default withTranslation()(LoginContainer)

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import faker from 'faker/locale/es'
 import { Container, Grid, Image, Segment, Card, Icon, Header, Button, Rating, Form, Select, Pagination } from 'semantic-ui-react'
+import { withTranslation } from 'react-i18next'
 import MarketplaceBanner from '../Assets/img/Marketplace/marketplace.svg'
 import SearchCategory from '../Components/SearchBox';
 
-export default class Marketplace extends Component {
+class Marketplace extends Component {
     constructor(props) {
         super(props)
 
@@ -16,6 +17,16 @@ export default class Marketplace extends Component {
 
     render() {
         const { source } = this.state
+        const { t } = this.props
+        const filterOptions = [
+            { key: 'weapon', text: t('marketplace.weapons'), value: 'Armas' },
+            { key: 'maps', text: t('marketplace.scenarios'), value: 'Escenarios' },
+            { key: 'effects', text: t('marketplace.effects'), value: 'Efectos' },
+            { key: 'characters', text: t('marketplace.characters'), value: 'Personajes' },
+            { key: 'skins', text: t('marketplace.skins'), value: 'Vestuarios' },
+            { key: 'other', text: t('marketplace.other'), value: 'Otros' },
+            { key: 'all', text: t('marketplace.all'), value: 'all' },
+        ]
         return (
             <div>
                 <Container fluid style={{
@@ -36,7 +47,7 @@ export default class Marketplace extends Component {
                                     <Form.Field
                                         control={Select}
                                         options={filterOptions}
-                                        placeholder='Filtros'
+                                        placeholder={t('marketplace.filters')}
                                         search
                                         onChange={this.handleChange}
                                     />
@@ -67,7 +78,7 @@ export default class Marketplace extends Component {
                                         </Card.Content>
                                         <Card.Content extra>
                                             <Button animated='fade'>
-                                                <Button.Content visible><Icon name='shopping cart' /> COMPRAR</Button.Content>
+                                                <Button.Content visible><Icon name='shopping cart' /> {t('marketplace.buy')}</Button.Content>
                                                 <Button.Content hidden>{item.price}</Button.Content>
                                             </Button>
                                             <Rating icon='heart' defaultRating={(Math.random() * 10) / 2} maxRating={5} />
@@ -105,7 +116,7 @@ export default class Marketplace extends Component {
                 <br />
                 <Grid centered>
                     <Button animated color='facebook' size='huge'>
-                        <Button.Content visible>QUIERO VENDER</Button.Content>
+                        <Button.Content visible>{t('marketplace.wantToSell')}</Button.Content>
                         <Button.Content hidden>
                             <Icon name='arrow right' />
                         </Button.Content>
@@ -138,15 +149,6 @@ export default class Marketplace extends Component {
 }
 
 const src = 'https://react.semantic-ui.com/images/wireframe/image.png'
-const filterOptions = [
-    { key: 'weapon', text: 'Armas', value: 'Armas' },
-    { key: 'maps', text: 'Escenarios', value: 'Escenarios' },
-    { key: 'effects', text: 'Efectos', value: 'Efectos' },
-    { key: 'characters', text: 'Personajes', value: 'Personajes' },
-    { key: 'skins', text: 'Vestuarios', value: 'Vestuarios' },
-    { key: 'other', text: 'Otros', value: 'Otros' },
-    { key: 'all', text: 'Todos', value: 'all' },
-]
 const getResults = () =>
     _.times(5, () => ({
         title: faker.random.words(),
@@ -167,3 +169,5 @@ const source = _.range(0, 3).reduce((memo, id) => {
 
     return memo
 }, {})
+
+export default withTranslation()(Marketplace)

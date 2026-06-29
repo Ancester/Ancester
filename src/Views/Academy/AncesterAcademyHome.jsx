@@ -1,22 +1,23 @@
 import React from 'react'
 import { Grid, Image, Segment, Container, Card, Pagination } from 'semantic-ui-react'
+import { withTranslation } from "react-i18next";
 import Banner from '../../Assets/img/Home/banner-ancester-academy.svg'
 import SearchStandard from './AcademySearch';
 const src = 'https://react.semantic-ui.com/images/wireframe/image.png'
 
-const AncesterAcademyHome = () => {
+const AncesterAcademyHome = ({ t }) => {
     return (
         <Container fluid>
             <Image src={Banner} height='100' fluid />
             <Segment.Group horizontal>
                 <Segment inverted style={{ backgroundColor: '#081B24FF' }}>
-                    <b>DISEÑOS 3D</b>
+                    <b>{t('academy.design3d')}</b>
                 </Segment>
                 <Segment inverted style={{ backgroundColor: '#081B24FF' }}>
-                    <b>NEGOCIOS</b>
+                    <b>{t('academy.business')}</b>
                 </Segment>
                 <Segment inverted style={{ backgroundColor: '#081B24FF' }}>
-                    <b>CREACIÓN DE VIDEOJUEGOS</b>
+                    <b>{t('academy.gameDev')}</b>
                 </Segment>
             </Segment.Group>
             <Grid>
@@ -67,4 +68,4 @@ const AncesterAcademyHome = () => {
     )
 }
 
-export default AncesterAcademyHome
+export default withTranslation()(AncesterAcademyHome)

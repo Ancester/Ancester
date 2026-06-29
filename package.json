@@ -4,8 +4,10 @@
   "private": true,
   "homepage": "https://ancester.github.io/Ancester/",
   "dependencies": {
+    "i18next": "^26.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^17.0.8",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1",
@@ -21,14 +23,27 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "faker": "^4.1.0",
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^1.2.0",
+    "react-test-renderer": "^19.2.7"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header, Container, Segment, Image, Grid } from "semantic-ui-react";
+import { withTranslation } from "react-i18next";
 import Globe from '../../Assets/img/WeCreate/globo.svg'
 import Services from '../../Assets/img/WeCreate/servicios.svg'
 import Description from '../../Assets/img/WeCreate/descripcion.svg'
@@ -7,7 +8,7 @@ import Step1 from '../../Assets/img/WeCreate/paso1.svg'
 import Step2 from '../../Assets/img/WeCreate/paso2.svg'
 import Step3 from '../../Assets/img/WeCreate/paso3.svg'
 
-const WeCreate = () => {
+const WeCreate = ({ t }) => {
     return (
         <Container fluid
             style={{
@@ -25,7 +26,7 @@ const WeCreate = () => {
             }}>
                 <Container text>
                     <br />
-                    <Header as='h1' inverted textAlign='center'><strong>CREAMOS TU WEB GAMER</strong></Header>
+                    <Header as='h1' inverted textAlign='center'><strong>{t('services.weCreateHeader')}</strong></Header>
                     <br />
                     <Grid centered>
                         <Image src={Description} height='200' />
@@ -38,7 +39,7 @@ const WeCreate = () => {
             <br/>
             <br/>
             <div>
-                <Header as='h3' inverted textAlign='center'>REQUISITOS</Header>
+                <Header as='h3' inverted textAlign='center'>{t('services.requirements')}</Header>
                 <Grid columns={3} doubling padded relaxed='very'>
                     <Grid.Column>
                         <Image src={Step1} />
@@ -56,7 +57,7 @@ const WeCreate = () => {
                 <Container text>
                     <br />
                     <Segment style={{ backgroundColor: 'rgb(42, 39, 77)' }} inverted>
-                        Para mas informacion
+                        {t('services.moreInfo')}
                 </Segment>
                 </Container>
                 <br />
@@ -66,4 +67,4 @@ const WeCreate = () => {
     )
 }
 
-export default WeCreate
+export default withTranslation()(WeCreate)
