@@ -65,3 +65,13 @@ test('renders services page at /services route', () => {
   );
   expect(screen.getByText('services.title')).toBeInTheDocument();
 });
+
+test('renders contact page at /contacto route', () => {
+  render(
+    <MemoryRouter initialEntries={['/contacto']}>
+      <App />
+    </MemoryRouter>
+  );
+  expect(screen.getByText('contacto.title')).toBeInTheDocument();
+  expect(screen.getByText('contacto.submitButton')).toBeInTheDocument();
+});

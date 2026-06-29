@@ -21,10 +21,10 @@ const Footer = ({ t }) => {
         <Grid inverted centered>
           <Grid.Row textAlign='center'>
             <Grid.Column textAlign='center' computer={3} mobile={8} tablet={4}>
-              <Header link="true" inverted as='h4' content={t("footer.privacy")} />
+              <Header inverted as='h4' content={t("footer.privacy")} />
             </Grid.Column>
             <Grid.Column computer={3} mobile={8} tablet={4}>
-              <Header link="true" inverted as='h4' content={t("footer.feedback")} />
+              <Header inverted as='h4' content={t("footer.feedback")} />
             </Grid.Column>
             <Grid.Column textAlign='center' only='computer' computer={4}>
               <Image centered size='mini' src={ANCESTER} />
@@ -33,10 +33,10 @@ const Footer = ({ t }) => {
               </p>
             </Grid.Column>
             <Grid.Column computer={3} mobile={8} tablet={4}>
-              <Header link="true" inverted as='h4' content={t("footer.social")} />
+              <Header inverted as='h4' content={t("footer.social")} />
             </Grid.Column>
             <Grid.Column computer={3} mobile={8} tablet={4}>
-              <Header link="true" inverted as='h4' content={t("footer.contact")} />
+              <Header inverted as='h4' content={t("footer.contact")} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

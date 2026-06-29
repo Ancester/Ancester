@@ -10,8 +10,13 @@ test('i18n has English and Spanish translation resources', () => {
   expect(i18n.getResourceBundle('es', 'translation')).toBeTruthy();
 });
 
-test('translations return correct keys', () => {
-  expect(i18n.t('nav.home')).toBeTruthy();
+test('translations exist for common keys', () => {
+  expect(i18n.exists('nav.academy')).toBe(true);
+  expect(i18n.exists('nav.services')).toBe(true);
+  expect(i18n.exists('nav.knowUs')).toBe(true);
+  expect(i18n.exists('nav.signIn')).toBe(true);
+  expect(i18n.exists('home.heroTitle')).toBe(true);
+  expect(i18n.exists('footer.rights')).toBe(true);
 });
 
 test('can change language to English', () => {

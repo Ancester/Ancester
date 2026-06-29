@@ -37,9 +37,8 @@ test('clears search when value becomes empty after debounce', async () => {
   jest.useRealTimers();
 });
 
-test('renders without source prop', () => {
-  // @ts-expect-error testing missing source prop
-  render(<SearchCategory />);
+test('renders with an empty source prop', () => {
+  render(<SearchCategory source={{}} />);
   const searchInput = screen.getByRole('textbox');
   expect(searchInput).toBeInTheDocument();
 });

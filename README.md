@@ -81,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app in the brows
 
 ## Project Structure
 
-```
+```text
 src/
 ├── App.js                 # Main app with routes
 ├── Assets/

@@ -22,7 +22,9 @@ const HomeContainer = ({ t }) => {
           <p style={{ color: 'white', fontSize: '18px', maxWidth: '700px', margin: '10px auto 20px', lineHeight: '1.6' }}>
             {t('home.heroDescription')}
           </p>
-          <Link to="/contacto"><Button primary size='large'>{t('home.contact')}</Button></Link>
+          <Button as={Link} to="/contacto" primary size='large'>
+            {t('home.contact')}
+          </Button>
         </Container>
       </Segment>
       <Segment style={{ padding: '40px 0' }}>
@@ -41,7 +43,9 @@ const HomeContainer = ({ t }) => {
               <p>{t('home.weAdviseDesc')}</p>
             </Grid.Column>
           </Grid>
-          <Link to="/contacto"><Button primary style={{ display: 'block', margin: '30px auto' }}>{t('home.contact')}</Button></Link>
+          <Button as={Link} to="/contacto" primary style={{ display: 'block', margin: '30px auto' }}>
+            {t('home.contact')}
+          </Button>
           <p style={{ textAlign: 'center', color: '#888', fontSize: '14px', marginTop: '10px' }}>
             {t('home.workModel')}
           </p>

@@ -6,6 +6,16 @@ import { withTranslation } from 'react-i18next'
 import MarketplaceBanner from '../Assets/img/Marketplace/marketplace.svg'
 import SearchCategory from '../Components/SearchBox';
 
+const CATEGORY_VALUES = {
+  weapons: 'Armas',
+  scenarios: 'Escenarios',
+  effects: 'Efectos',
+  characters: 'Personajes',
+  skins: 'Vestuarios',
+};
+
+const CATEGORY_IDS = Object.keys(CATEGORY_VALUES);
+
 const hashCode = (str) => {
     let hash = 5381
     for (let i = 0; i < str.length; i++) {
@@ -17,7 +27,7 @@ const hashCode = (str) => {
 const buildPollinationsUrl = (title, category) => {
     const prompt = `${title}, ${category} game asset`
     const seed = hashCode(title)
-    return `https://pollinations.ai/p/${encodeURIComponent(prompt)}?width=512&height=512&seed=${seed}`
+    return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&seed=${seed}`
 }
 
 class PollinatedImage extends Component {
@@ -40,20 +50,20 @@ class Marketplace extends Component {
         super(props)
 
         this.state = {
-            categories: ['Armas', 'Escenarios', 'Efectos', 'Personajes', 'Vestuarios'], source: {}
+            source: {}
         }
     }
 
     render() {
-        const { source } = this.state
+        const { activeCategory, selectedCategories, source } = this.state
         const { t } = this.props
         const filterOptions = [
-            { key: 'weapon', text: t('marketplace.weapons'), value: 'Armas' },
-            { key: 'maps', text: t('marketplace.scenarios'), value: 'Escenarios' },
-            { key: 'effects', text: t('marketplace.effects'), value: 'Efectos' },
-            { key: 'characters', text: t('marketplace.characters'), value: 'Personajes' },
-            { key: 'skins', text: t('marketplace.skins'), value: 'Vestuarios' },
-            { key: 'other', text: t('marketplace.other'), value: 'Otros' },
+            { key: 'weapons', text: t('marketplace.weapons'), value: 'weapons' },
+            { key: 'scenarios', text: t('marketplace.scenarios'), value: 'scenarios' },
+            { key: 'effects', text: t('marketplace.effects'), value: 'effects' },
+            { key: 'characters', text: t('marketplace.characters'), value: 'characters' },
+            { key: 'skins', text: t('marketplace.skins'), value: 'skins' },
+            { key: 'other', text: t('marketplace.other'), value: 'other' },
             { key: 'all', text: t('marketplace.all'), value: 'all' },
         ]
         return (
@@ -89,8 +99,8 @@ class Marketplace extends Component {
                 <br />
                 <Grid centered>
                     <Grid.Column width={15}>
-                        {Object.keys(source).map(cat => {
-                            const section = source[cat].results.map(item => {
+                        {Object.keys(source).map(catKey => {
+                            const section = source[catKey].results.map(item => {
                                 return (
                                     <Card key={item.title+Math.random()}>
                                         <div className={'ui slide masked reveal image'} style={{ zIndex: 0 }}>
@@ -117,8 +127,8 @@ class Marketplace extends Component {
                             }
                             )
                             return (
-                                <Container fluid key={source[cat].name}>
-                                    <Header>{source[cat].name}</Header>
+                                <Container fluid key={catKey}>
+                                    <Header>{t(`marketplace.${catKey}`) || catKey}</Header>
                                     <Card.Group itemsPerRow={5}>
                                         {section}
                                     </Card.Group>
@@ -165,14 +175,15 @@ class Marketplace extends Component {
 
     handleChange = (e, { name, value }) => {
         if (value === 'all') {
-            this.setState({ [name]: ['Armas', 'Escenarios', 'Efectos', 'Personajes', 'Vestuarios'], source })
+            this.setState({ source })
         }
         else {
-            const source = {
+            const catValue = CATEGORY_VALUES[value] || value
+            const section = {
                 name: value,
-                results: getResults(value),
+                results: getResults(catValue),
             }
-            this.setState({ [name]: [value], source: { [value]: source } })
+            this.setState({ source: { [value]: section } })
         }
     }
 }
@@ -189,16 +200,12 @@ const getResults = (category) =>
         }
     })
 
-const source = _.range(0, 3).reduce((memo, id) => {
-
-    const name = ['Armas', 'Escenarios', 'Efectos', 'Personajes', 'Vestuarios'][id]
-
-    // eslint-disable-next-line no-param-reassign
-    memo[name] = {
-        name,
-        results: getResults(name),
+const source = _.range(0, CATEGORY_IDS.length).reduce((memo, id) => {
+    const catKey = CATEGORY_IDS[id]
+    memo[catKey] = {
+        name: catKey,
+        results: getResults(CATEGORY_VALUES[catKey]),
     }
-
     return memo
 }, {})
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { withTranslation } from 'react-i18next'
 import { Container, Header, Segment, Form, Button, Message } from "semantic-ui-react"
 
 const GAME_OPTIONS = [
@@ -13,7 +14,7 @@ const GAME_OPTIONS = [
   value: game
 }))
 
-const Contacto = () => {
+const Contacto = ({ t }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [game, setGame] = useState('')
@@ -33,15 +34,15 @@ const Contacto = () => {
       <Container style={{ padding: '3em 0' }}>
         <Segment stacked>
           <Message success>
-            <Message.Header>Te contactaremos tras revisar tu mensaje</Message.Header>
+            <Message.Header>{t('contacto.successTitle')}</Message.Header>
             <dl>
-              <dt>Nombre</dt>
+              <dt>{t('contacto.nameLabel')}</dt>
               <dd>{name}</dd>
-              <dt>Correo electronico</dt>
+              <dt>{t('contacto.emailLabel')}</dt>
               <dd>{email}</dd>
-              <dt>Juego</dt>
+              <dt>{t('contacto.gameLabel')}</dt>
               <dd>{game}</dd>
-              <dt>Mensaje</dt>
+              <dt>{t('contacto.messageLabel')}</dt>
               <dd>{message}</dd>
             </dl>
           </Message>
@@ -54,32 +55,32 @@ const Contacto = () => {
     <Container style={{ padding: '3em 0' }}>
       <Segment stacked>
         <Header as='h1' inverted textAlign='center' style={{ background: 'rgb(42, 39, 77)', padding: '1em 0 0.5em', marginBottom: '1em' }}>
-          Contacto
+          {t('contacto.title')}
         </Header>
         <Form onSubmit={handleSubmit}>
           <Form.Field required>
-            <label>Nombre</label>
+            <label>{t('contacto.nameLabel')}</label>
             <Form.Input
-              placeholder='Tu nombre'
+              placeholder={t('contacto.namePlaceholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </Form.Field>
           <Form.Field required>
-            <label>Correo electronico</label>
+            <label>{t('contacto.emailLabel')}</label>
             <Form.Input
               type='email'
-              placeholder='tu@correo.com'
+              placeholder={t('contacto.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </Form.Field>
           <Form.Field required>
-            <label>Juego</label>
+            <label>{t('contacto.gameLabel')}</label>
             <Form.Select
-              placeholder='Selecciona un juego'
+              placeholder={t('contacto.gamePlaceholder')}
               options={GAME_OPTIONS}
               value={game}
               onChange={(e, { value }) => setGame(value)}
@@ -87,16 +88,16 @@ const Contacto = () => {
             />
           </Form.Field>
           <Form.Field required>
-            <label>Mensaje</label>
+            <label>{t('contacto.messageLabel')}</label>
             <Form.TextArea
-              placeholder='Cuentanos tu proyecto o consulta'
+              placeholder={t('contacto.messagePlaceholder')}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
             />
           </Form.Field>
           <Button type='submit' primary size='large' disabled={disabled}>
-            Enviar mensaje
+            {t('contacto.submitButton')}
           </Button>
         </Form>
       </Segment>
@@ -104,4 +105,4 @@ const Contacto = () => {
   )
 }
 
-export default Contacto
+export default withTranslation()(Contacto)

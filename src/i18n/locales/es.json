@@ -86,6 +86,19 @@
     "message": "no existe la pagina que busca, trate:",
     "home": "Inicio"
   },
+  "contacto": {
+    "title": "Contacto",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Correo electronico",
+    "emailPlaceholder": "tu@correo.com",
+    "gameLabel": "Juego",
+    "gamePlaceholder": "Selecciona un juego",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuentanos tu proyecto o consulta",
+    "submitButton": "Enviar mensaje",
+    "successTitle": "Te contactaremos tras revisar tu mensaje"
+  },
   "language": {
     "en": "English",
     "es": "Español"

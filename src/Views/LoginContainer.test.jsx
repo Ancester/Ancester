@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import LoginContainer from './LoginContainer';
 
 test('renders login form with demo warning', () => {
@@ -31,7 +31,11 @@ test('closes modal when clicking Entendido', async () => {
   expect(await screen.findByText('login.demoModalTitle')).toBeInTheDocument();
 
   fireEvent.click(screen.getByText('login.understood'));
-  expect(screen.queryByText('login.demoModalTitle')).not.toBeInTheDocument();
+  // Semantic UI Modal may keep DOM nodes during close transitions;
+  // use waitFor with assertion instead of waitForElementToBeRemoved
+  await waitFor(() => {
+    expect(screen.queryByText('login.demoModalTitle')).not.toBeInTheDocument();
+  });
 });
 
 test('renders signup link text', () => {
