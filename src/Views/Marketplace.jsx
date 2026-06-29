@@ -55,7 +55,7 @@ class Marketplace extends Component {
     }
 
     render() {
-        const { activeCategory, selectedCategories, source } = this.state
+        const { source } = this.state
         const { t } = this.props
         const filterOptions = [
             { key: 'weapons', text: t('marketplace.weapons'), value: 'weapons' },
