@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1191 463">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.16;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 40px;
+        font-family: Helvetica;
+        letter-spacing: 0.03em;
+      }
+    </style>
+  </defs>
+  <g id="Group_38" data-name="Group 38" transform="translate(-407 -367)">
+    <rect id="Rectangle_68" data-name="Rectangle 68" class="cls-1" width="1191" height="463" rx="55" transform="translate(407 367)"/>
+    <text id="Te_ayudamos_a_mostrar_al_mundo_sobre_tu_videojuego_mediante_la_web._Nosotros_la_diseñamos_y_la_creamos._" data-name="Te ayudamos a mostrar al mundo sobre tu videojuego, mediante la web. Nosotros la diseñamos y la creamos. " class="cls-2" transform="translate(475 510)"><tspan x="0" y="37">Te ayudamos a mostrar al mundo sobre tu videojuego, </tspan><tspan x="0" y="83">mediante la web. Nosotros la diseñamos y la creamos. </tspan></text>
+  </g>
+</svg>

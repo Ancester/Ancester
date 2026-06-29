@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 559 306">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        opacity: 0.14;
+      }
+
+      .cls-2 {
+        font-size: 40px;
+        font-family: Helvetica;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </defs>
+  <g id="Group_27" data-name="Group 27" transform="translate(-91 -1142)">
+    <rect id="Rectangle_70" data-name="Rectangle 70" class="cls-1" width="559" height="306" rx="52" transform="translate(91 1142)"/>
+    <text id="Idea_de_web_gamer" data-name="Idea de web gamer" class="cls-2" transform="translate(371 1309)"><tspan x="-187.221" y="0">Idea de web gamer</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 559 306">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        opacity: 0.14;
+      }
+
+      .cls-2 {
+        font-size: 40px;
+        font-family: Helvetica;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </defs>
+  <g id="Group_24" data-name="Group 24" transform="translate(-93 -1066)">
+    <rect id="Rectangle_70" data-name="Rectangle 70" class="cls-1" width="559" height="306" rx="52" transform="translate(93 1066)"/>
+    <text id="Tener_un_videojuego_ya_creado_o_en_proceso_de_creación." data-name="Tener un videojuego ya
+creado o en proceso
+de creación." class="cls-2" transform="translate(377 1174)"><tspan x="-230.033" y="0">Tener un videojuego ya</tspan><tspan x="-200.344" y="46">creado o en proceso</tspan><tspan x="-119.955" y="92">de creación.</tspan></text>
+  </g>
+</svg>

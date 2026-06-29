@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 559 309">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        opacity: 0.14;
+      }
+
+      .cls-2 {
+        font-size: 40px;
+        font-family: Helvetica;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </defs>
+  <g id="Group_26" data-name="Group 26" transform="translate(-1272 -1052)">
+    <rect id="Rectangle_75" data-name="Rectangle 75" class="cls-1" width="559" height="309" rx="52" transform="translate(1272 1052)"/>
+    <text id="Paciencia" class="cls-2" transform="translate(1457 1221)"><tspan x="0" y="0">Paciencia</tspan></text>
+  </g>
+</svg>
