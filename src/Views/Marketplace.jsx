@@ -6,6 +6,35 @@ import { withTranslation } from 'react-i18next'
 import MarketplaceBanner from '../Assets/img/Marketplace/marketplace.svg'
 import SearchCategory from '../Components/SearchBox';
 
+const hashCode = (str) => {
+    let hash = 5381
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) ^ str.charCodeAt(i)
+    }
+    return Math.abs(hash)
+}
+
+const buildPollinationsUrl = (title, category) => {
+    const prompt = `${title}, ${category} game asset`
+    const seed = hashCode(title)
+    return `https://pollinations.ai/p/${encodeURIComponent(prompt)}?width=512&height=512&seed=${seed}`
+}
+
+class PollinatedImage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { src: props.src }
+    }
+
+    handleError = () => {
+        this.setState({ src: this.props.fallback })
+    }
+
+    render() {
+        return <Image src={this.state.src} className={this.props.className} onError={this.handleError} />
+    }
+}
+
 class Marketplace extends Component {
     constructor(props) {
         super(props)
@@ -65,7 +94,7 @@ class Marketplace extends Component {
                                 return (
                                     <Card key={item.title+Math.random()}>
                                         <div className={'ui slide masked reveal image'} style={{ zIndex: 0 }}>
-                                            <Image src={item.image} className={'visible content'} />
+                                            <PollinatedImage src={item.image} fallback={src} className={'visible content'} />
                                             <Image src={src} className={'hidden content'} />
                                         </div>
                                         <Card.Content>
@@ -141,7 +170,7 @@ class Marketplace extends Component {
         else {
             const source = {
                 name: value,
-                results: getResults(),
+                results: getResults(value),
             }
             this.setState({ [name]: [value], source: { [value]: source } })
         }
@@ -149,13 +178,16 @@ class Marketplace extends Component {
 }
 
 const src = 'https://react.semantic-ui.com/images/wireframe/image.png'
-const getResults = () =>
-    _.times(5, () => ({
-        title: faker.random.words(),
-        description: faker.hacker.phrase(),
-        image: src,
-        price: faker.finance.amount(0, 100, 2, '$'),
-    }))
+const getResults = (category) =>
+    _.times(5, () => {
+        const title = faker.random.words()
+        return {
+            title,
+            description: faker.hacker.phrase(),
+            image: buildPollinationsUrl(title, category),
+            price: faker.finance.amount(0, 100, 2, '$'),
+        }
+    })
 
 const source = _.range(0, 3).reduce((memo, id) => {
 
@@ -164,7 +196,7 @@ const source = _.range(0, 3).reduce((memo, id) => {
     // eslint-disable-next-line no-param-reassign
     memo[name] = {
         name,
-        results: getResults(),
+        results: getResults(name),
     }
 
     return memo
