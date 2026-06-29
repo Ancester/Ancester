@@ -77,20 +77,40 @@
 //   }
 // }
 import _ from "lodash";
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Container,
   Icon,
   Image,
   Menu,
   Sidebar,
-  Responsive,
   Segment,
   Dropdown
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import BarraVertical from "../Assets/img/barra separadora.svg";
 import ANCESTER from "../Assets/img/blanco-logo-1.svg";
+
+const ResponsiveOnlyMobile = { maxWidth: 767 };
+const ResponsiveOnlyTablet = { minWidth: 768 };
+
+const Responsive = ({ children, minWidth, maxWidth }) => {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const query = minWidth
+      ? `(min-width: ${minWidth}px)`
+      : maxWidth
+        ? `(max-width: ${maxWidth}px)`
+        : "";
+    const mql = window.matchMedia(query);
+    setMatches(mql.matches);
+    const handler = (e) => setMatches(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, [minWidth, maxWidth]);
+  return matches ? children : null;
+};
+
 const options = [
   { key: 1, text: "Choice 1", value: 1 },
   { key: 2, text: "Choice 2", value: 2 },
@@ -213,7 +233,7 @@ class NavContainer extends Component {
     const { visible } = this.state;
     return (
       <div>
-        <Responsive {...Responsive.onlyMobile}>
+        <Responsive maxWidth={ResponsiveOnlyMobile.maxWidth}>
           <NavBarMobile
             onPusherClick={this.handlePusher}
             onToggle={this.handleToggle}
@@ -223,7 +243,7 @@ class NavContainer extends Component {
             <NavBarMobileChildren>{children}</NavBarMobileChildren>
           </NavBarMobile>
         </Responsive>
-        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <Responsive minWidth={ResponsiveOnlyTablet.minWidth}>
           <NavBarDesktop rightItems={rightItems} />
           <NavBarChildren>{children}</NavBarChildren>
         </Responsive>
