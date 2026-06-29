@@ -11,7 +11,7 @@ const source = _.times(5, () => ({
 }))
 
 export default class SearchStandard extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.resetComponent()
   }
 

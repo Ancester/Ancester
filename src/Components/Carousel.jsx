@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import Banner0 from "../Assets/img/Home/Web-banner.svg";
 import Banner1 from "../Assets/img/Home/banner-ancester-academy.svg";
 
-export default () => (
+const CarouselComponent = () => (
   <Carousel autoPlay dynamicHeight infiniteLoop showThumbs={false}>
     <div>
       <img src={Banner1} alt='Gunz0'/>
@@ -17,5 +17,7 @@ export default () => (
       <Link to="/"><p className="legend">Prueba nuestro Juego Hack'n'slash</p></Link>      
     </div>
   </Carousel>
-  );
+);
+
+export default CarouselComponent;
 

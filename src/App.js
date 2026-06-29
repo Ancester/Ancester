@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavContainer from "./Views/NavContainer";
 import HomeContainer from "./Views/HomeContainer";
 import Footer from "./Views/Footer";
@@ -27,20 +27,20 @@ export default class App extends Component {
     return (
       <div>
         <NavContainer rightItems={rightItems}>
-          <Switch>
-            <Route exact path="/" component={HomeContainer} />
-            <Route path="/Ancester" component={HomeContainer} />
-            <Route path='/login' component={LoginContainer} />
-            <Route path="/ancester-academy" component={AncesterAcademy} />
-            <Route path="/ancester-academy-home" component={AncesterAcademyHome} />
-            <Route path="/services" component={Services} />
-            <Route path="/know-us" component={KnowUs} />
-            <Route path="/we-create" component={WeCreate} />
-            <Route path="/advise" component={Advise} />
-            <Route path="/sponsor" component={Sponsor} />
-            <Route path="/marketplace" component={Marketplace} />
-            <Route component={NoMatch} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<HomeContainer />} />
+            <Route path="/Ancester" element={<HomeContainer />} />
+            <Route path='/login' element={<LoginContainer />} />
+            <Route path="/ancester-academy" element={<AncesterAcademy />} />
+            <Route path="/ancester-academy-home" element={<AncesterAcademyHome />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/know-us/*" element={<KnowUs />} />
+            <Route path="/we-create" element={<WeCreate />} />
+            <Route path="/advise" element={<Advise />} />
+            <Route path="/sponsor" element={<Sponsor />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
         </NavContainer>
         <Footer />
       </div>

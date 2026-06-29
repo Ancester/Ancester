@@ -4,7 +4,7 @@ import { Search, Grid } from 'semantic-ui-react'
 
 export default class SearchCategory extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.resetComponent()
     }
 

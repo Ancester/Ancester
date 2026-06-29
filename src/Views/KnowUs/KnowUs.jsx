@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 import { Container, Grid, Image, Header,Modal } from 'semantic-ui-react'
 import Jumbo from '../../Assets/img/KnowUs/jumbo.svg'
 import Daniel from '../../Assets/img/KnowUs/daniel.svg'
@@ -14,70 +14,76 @@ import KnowDaniel from './KnowDaniel';
 import KnowIsrael from './KnowIsrael';
 
 
-const KnowUs = ({ match }) => {
+const KnowUs = () => {
   return (
     <Container fluid style={{
       marginTop: "-3em"
     }}>
-      <Grid centered>
-        <Grid.Column>
-          <Image src={Jumbo} fluid />
-        </Grid.Column>
-      </Grid>
-      <Header as='h3' textAlign='center'><u>El Equipo</u></Header>
-      <Grid centered>
-        <Grid.Column width={4}>
-          <Modal
-            trigger={
-              <Link as='div' to={`${match.url}/daniel`}>
-                <Image src={Daniel} width='240px'/>
-              </Link>
-            }
-          >
-            <Modal.Content >
-            <Route path={`${match.path}/daniel`} render={() => { return <KnowDaniel/> }} />
-            </Modal.Content>
-          </Modal>
-        </Grid.Column>
-        <Grid.Column width={4}>
-        <Modal
-            trigger={
-              <Link as='div' to={`${match.url}/israel`}>
-                <Image src={Israel} fluid />
-              </Link>
-            }
-          >
-            <Modal.Content >
-            <Route path={`${match.path}/israel`} render={() => { return <KnowIsrael/> }} />
-            </Modal.Content>
-          </Modal>
-        </Grid.Column>
-      </Grid>
-      <Header as='h3' textAlign='center'><u>Nuestros Valores</u></Header>
-      
-      <Grid centered>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Honestidad} />
-        </Grid.Column>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Compromiso} />
-        </Grid.Column>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Pasion} />
-        </Grid.Column>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Resolucion} />
-        </Grid.Column>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Equipo} />
-        </Grid.Column>
-        <Grid.Column computer={4} mobile={6} tablet={5}>
-          <Image src={Integridad} />
-        </Grid.Column>
-      </Grid>
-      <Header as='h3' textAlign='center' style={{ marginBottom: '55px' }}><u>Nuestros Proyectos</u></Header>
-      <br />
-      <hr />
+      <Routes>
+        <Route path="/" element={
+          <div>
+            <Grid centered>
+              <Grid.Column>
+                <Image src={Jumbo} fluid />
+              </Grid.Column>
+            </Grid>
+            <Header as='h3' textAlign='center'><u>El Equipo</u></Header>
+            <Grid centered>
+              <Grid.Column width={4}>
+                <Modal
+                  trigger={
+                    <Link as='div' to="daniel">
+                      <Image src={Daniel} width='240px'/>
+                    </Link>
+                  }
+                >
+                  <Modal.Content >
+                    <Route path="daniel" element={<KnowDaniel/>} />
+                  </Modal.Content>
+                </Modal>
+              </Grid.Column>
+              <Grid.Column width={4}>
+              <Modal
+                  trigger={
+                    <Link as='div' to="israel">
+                      <Image src={Israel} fluid />
+                    </Link>
+                  }
+                >
+                  <Modal.Content >
+                    <Route path="israel" element={<KnowIsrael/>} />
+                  </Modal.Content>
+                </Modal>
+              </Grid.Column>
+            </Grid>
+            <Header as='h3' textAlign='center'><u>Nuestros Valores</u></Header>
+            
+            <Grid centered>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Honestidad} />
+              </Grid.Column>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Compromiso} />
+              </Grid.Column>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Pasion} />
+              </Grid.Column>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Resolucion} />
+              </Grid.Column>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Equipo} />
+              </Grid.Column>
+              <Grid.Column computer={4} mobile={6} tablet={5}>
+                <Image src={Integridad} />
+              </Grid.Column>
+            </Grid>
+            <Header as='h3' textAlign='center' style={{ marginBottom: '55px' }}><u>Nuestros Proyectos</u></Header>
+            <br />
+            <hr />
+          </div>
+        } />
+      </Routes>
     </Container>
   )
 }
