@@ -151,7 +151,7 @@ const getResults = () =>
     _.times(5, () => ({
         title: faker.random.words(),
         description: faker.hacker.phrase(),
-        image: faker.image.image(),
+        image: src,
         price: faker.finance.amount(0, 100, 2, '$'),
     }))
 

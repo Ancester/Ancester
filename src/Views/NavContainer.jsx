@@ -112,9 +112,10 @@ const Responsive = ({ children, minWidth, maxWidth }) => {
 };
 
 const options = [
-  { key: 1, text: "Choice 1", value: 1 },
-  { key: 2, text: "Choice 2", value: 2 },
-  { key: 3, text: "Choice 3", value: 3 }
+  { key: 'gunz', text: 'Gunz', value: 'Gunz' },
+  { key: 'flores', text: 'Las Flores City', value: 'Las Flores City' },
+  { key: 'game1', text: 'Shadow Realm', value: 'Shadow Realm' },
+  { key: 'game2', text: 'Neon Drift', value: 'Neon Drift' },
 ];
 
 const NavBarMobile = ({
@@ -180,12 +181,7 @@ const NavBarDesktop = ({ rightItems }) => (
       <Menu.Item as={Link} to='/'>
         <Image size="mini" src={ANCESTER} />
       </Menu.Item>
-      <Menu.Item
-        name="juegos"
-        fitted='vertically'
-      >
-        <Dropdown text="Juegos" options={options} simple item />
-      </Menu.Item>
+      <Dropdown text="Juegos" options={options} simple item />
       <Menu.Menu position="right">
         {_.map(rightItems, item => (
           <Menu.Item {...item} as={Link}/>
