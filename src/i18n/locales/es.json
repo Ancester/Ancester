@@ -1,0 +1,106 @@
+{
+  "nav": {
+    "academy": "Academy",
+    "marketplace": "Marketplace",
+    "services": "Servicios",
+    "knowUs": "Conócenos",
+    "games": "Juegos",
+    "otherGame": "Otro Juego",
+    "signIn": "Iniciar Sesión",
+    "language": "Idioma"
+  },
+  "footer": {
+    "privacy": "Política y Privacidad",
+    "feedback": "Aportes y Sugerencias",
+    "social": "Redes Sociales",
+    "contact": "Contáctanos",
+    "rights": "Todos los derechos reservados por Ancester"
+  },
+  "home": {
+    "indieSoloDev": "INDIE · SOLO DEV",
+    "heroTitle": "Lleva tu juego al mercado. No estás solo.",
+    "heroDescription": "Un desarrollador independiente tiene una cuesta arriba para terminar y publicar su juego. Ancester revisa tu idea, hace las preguntas correctas, negocia un acuerdo justo y termina el trabajo contigo.",
+    "contact": "Contacto",
+    "weCreate": "Creamos",
+    "weCreateDesc": "Construimos tu web gamer (o lo que tu juego necesite para lanzarse).",
+    "wePublish": "Publicamos",
+    "wePublishDesc": "Marketing y posicionamiento para que tu juego llegue a su audiencia.",
+    "weAdvise": "Asesoramos",
+    "weAdviseDesc": "Te acompañamos para que tomes mejores decisiones durante el desarrollo.",
+    "workModel": "Trabajamos como Socio (participación en ingresos) o como Colaborador (pago por proyecto o mensual).",
+    "socialMedia": "REDES SOCIALES"
+  },
+  "login": {
+    "title": "Login",
+    "demoWarning": "Versión demo — los datos no se guardan",
+    "idPlaceholder": "ID",
+    "passwordPlaceholder": "Contraseña",
+    "loginButton": "INGRESAR",
+    "newHere": "¿Nuevo por acá?",
+    "signUp": "Inscríbete",
+    "demoModalTitle": "Proyecto Demo",
+    "demoModalLoginHeader": "Inicio de Sesión",
+    "demoModalSignupHeader": "Registro de Usuario",
+    "demoModalInfo": "Esta es una versión demo del proyecto.",
+    "demoModalLoginDesc": "El inicio de sesión se vería así. Los usuarios ingresarían sus credenciales para acceder a su panel personal, cursos, marketplace y más.",
+    "demoModalSignupDesc": "El registro de nuevos usuarios se vería así. Los interesados completarían un formulario para crear una cuenta en la plataforma.",
+    "demoModalDevHeader": "🔧 Funcionalidad en desarrollo",
+    "demoModalDevText": "Esta funcionalidad no está disponible actualmente ya que no contamos con un backend implementado. El proyecto se encuentra en fase de demostración.",
+    "understood": "Entendido"
+  },
+  "services": {
+    "title": "SERVICIOS",
+    "adviseHeader": "ASESORAMOS TU VIDEOJUEGO",
+    "weCreateHeader": "CREAMOS TU WEB GAMER",
+    "sponsorHeader": "PATROCINATE CON NOSOTROS",
+    "requirements": "REQUISITOS",
+    "moreInfo": "Para mas informacion"
+  },
+  "academy": {
+    "design3d": "DISEÑOS 3D",
+    "business": "NEGOCIOS",
+    "gameDev": "CREACIÓN DE VIDEOJUEGOS",
+    "learningPlatform": "Plataforma de Aprendizaje"
+  },
+  "carousel": {
+    "tryGame": "Prueba nuestro Juego Hack'n'slash"
+  },
+  "knowUs": {
+    "team": "El Equipo",
+    "values": "Nuestros Valores",
+    "projects": "Nuestros Proyectos"
+  },
+  "marketplace": {
+    "filters": "Filtros",
+    "weapons": "Armas",
+    "scenarios": "Escenarios",
+    "effects": "Efectos",
+    "characters": "Personajes",
+    "skins": "Vestuarios",
+    "other": "Otros",
+    "all": "Todos",
+    "buy": "COMPRAR",
+    "wantToSell": "QUIERO VENDER"
+  },
+  "notFound": {
+    "message": "no existe la pagina que busca, trate:",
+    "home": "Inicio"
+  },
+  "contacto": {
+    "title": "Contacto",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Correo electronico",
+    "emailPlaceholder": "tu@correo.com",
+    "gameLabel": "Juego",
+    "gamePlaceholder": "Selecciona un juego",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuentanos tu proyecto o consulta",
+    "submitButton": "Enviar mensaje",
+    "successTitle": "Te contactaremos tras revisar tu mensaje"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español"
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Routes, Route } from "react-router-dom";
 import { Container, Grid, Image, Header,Modal } from 'semantic-ui-react'
+import { withTranslation } from "react-i18next";
 import Jumbo from '../../Assets/img/KnowUs/jumbo.svg'
 import Daniel from '../../Assets/img/KnowUs/daniel.svg'
 import Israel from '../../Assets/img/KnowUs/israel.png'
@@ -14,7 +15,7 @@ import KnowDaniel from './KnowDaniel';
 import KnowIsrael from './KnowIsrael';
 
 
-const KnowUs = () => {
+const KnowUs = ({ t }) => {
   return (
     <Container fluid style={{
       marginTop: "-3em"
@@ -27,7 +28,7 @@ const KnowUs = () => {
                 <Image src={Jumbo} fluid />
               </Grid.Column>
             </Grid>
-            <Header as='h3' textAlign='center'><u>El Equipo</u></Header>
+            <Header as='h3' textAlign='center'><u>{t('knowUs.team')}</u></Header>
             <Grid centered>
               <Grid.Column width={4}>
                 <Modal
@@ -56,7 +57,7 @@ const KnowUs = () => {
                 </Modal>
               </Grid.Column>
             </Grid>
-            <Header as='h3' textAlign='center'><u>Nuestros Valores</u></Header>
+            <Header as='h3' textAlign='center'><u>{t('knowUs.values')}</u></Header>
             
             <Grid centered>
               <Grid.Column computer={4} mobile={6} tablet={5}>
@@ -78,7 +79,7 @@ const KnowUs = () => {
                 <Image src={Integridad} />
               </Grid.Column>
             </Grid>
-            <Header as='h3' textAlign='center' style={{ marginBottom: '55px' }}><u>Nuestros Proyectos</u></Header>
+            <Header as='h3' textAlign='center' style={{ marginBottom: '55px' }}><u>{t('knowUs.projects')}</u></Header>
             <br />
             <hr />
           </div>
@@ -88,4 +89,4 @@ const KnowUs = () => {
   )
 }
 
-export default KnowUs
+export default withTranslation()(KnowUs)

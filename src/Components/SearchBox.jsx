@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 import { Search, Grid } from 'semantic-ui-react'
 
 export default class SearchCategory extends Component {
+    state = {
+        isLoading: false,
+        results: [],
+        value: ''
+    }
 
     componentDidMount() {
         this.resetComponent()

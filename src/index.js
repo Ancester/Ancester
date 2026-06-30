@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
+import "./i18n/i18n";
 import App from "./App";
 import * as serviceWorker from "./Utils/serviceWorker";
 

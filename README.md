@@ -1,44 +1,139 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ancester
+
+A React-based gaming platform website featuring a landing page, services marketplace, academy, and team showcase. Built with Semantic UI React and internationalization support.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Project Structure](#project-structure)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [License](#license)
+
+## Overview
+
+Ancester is a web platform for indie game developers and gamers. The site provides a marketplace for game assets, advisory services, sponsorship opportunities, and an academy for learning game development.
+
+![Ancester Academy](src/Assets/img/AncesterAcademy/AncesterAcademy.png)
+
+## Features
+
+- **Landing Page** — Hero carousel, services overview, and social media links
+- **Marketplace** — Browse and filter game assets by category (weapons, scenarios, effects, characters, skins)
+- **Services** — Three core offerings:
+  - **We Create** — Custom game development
+  - **Advise** — Expert consulting for game projects
+  - **Sponsor** — Sponsorship opportunities for developers
+- **Ancester Academy** — Learning tracks covering design, creation, and business
+- **Know Us** — Team profiles and company values (honesty, commitment, passion, resolution, teamwork, integrity)
+- **Contact** — Contact form for inquiries
+- **Login** — Authentication container
+- **Bilingual** — English and Spanish support via i18next
+- **Responsive** — Mobile-first design with adaptive navigation
+
+![Services](src/Assets/img/Services/asesoramos.png)
+![We Create](src/Assets/img/Services/creamos.png)
+![Sponsor](src/Assets/img/Services/patrocinate.png)
+
+## Tech Stack
+
+- **React 18** — UI library
+- **React Router DOM 6** — Client-side routing
+- **Semantic UI React** — Component library
+- **i18next / react-i18next** — Internationalization
+- **react-responsive-carousel** — Carousel component
+- **Create React App** — Build tooling
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher recommended)
+- npm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the app in the browser. The page will reload on edits.
 
 ## Available Scripts
 
-In the project directory, you can run:
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start development server |
+| `npm test` | Run tests in watch mode |
+| `npm run build` | Create production build |
+| `npm run deploy` | Deploy to GitHub Pages |
+| `npm run eject` | Eject from Create React App (one-way) |
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```text
+src/
+├── App.js                 # Main app with routes
+├── Assets/
+│   ├── css/               # Stylesheets
+│   └── img/               # Images organized by section
+│       ├── AncesterAcademy/
+│       ├── Home/
+│       ├── KnowUs/
+│       ├── Marketplace/
+│       └── Services/
+├── Components/            # Reusable components (Carousel, SearchBox)
+├── i18n/                  # Internationalization config
+├── Utils/                 # Utility functions
+└── Views/
+    ├── Academy/           # Ancester Academy pages
+    ├── KnowUs/            # Team and values pages
+    ├── Services/          # Advise, Sponsor, WeCreate
+    ├── Contacto.jsx       # Contact form
+    ├── Footer.jsx         # Site footer
+    ├── HomeContainer.jsx  # Landing page
+    ├── LoginContainer.jsx # Login page
+    ├── Marketplace.jsx    # Asset marketplace
+    ├── NavContainer.jsx   # Navigation bar
+    └── NoMatch.jsx        # 404 page
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Testing
 
-### `npm test`
+Tests are built with **@testing-library/react**, **@testing-library/jest-dom**, and **@testing-library/user-event**. Test files are co-located with their components (e.g., `HomeContainer.test.jsx`).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run all tests:
 
-### `npm run build`
+```bash
+npm test
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Tests cover:
+- Component rendering
+- Navigation and routing
+- Form interactions
+- Snapshot validation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The project is configured for GitHub Pages deployment:
 
-### `npm run eject`
+```bash
+npm run deploy
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This builds the app and publishes the `build/` folder to the `gh-pages` branch.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is private and not intended for public distribution.

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header, Container, Segment, Image, Grid } from "semantic-ui-react";
+import { withTranslation } from "react-i18next";
 import JoyStick from '../../Assets/img/Advise/videojuego.svg'
 import Chart from '../../Assets/img/Advise/grafica.svg'
 import Description from '../../Assets/img/Advise/descripcion.svg'
@@ -7,7 +8,7 @@ import Step1 from '../../Assets/img/Advise/paso1.svg'
 import Step2 from '../../Assets/img/Advise/paso2.svg'
 import Step3 from '../../Assets/img/Advise/paso3.svg'
 
-const Advise = () => {
+const Advise = ({ t }) => {
     return (
         <Container fluid
             style={{
@@ -25,7 +26,7 @@ const Advise = () => {
             }}>
                 <Container text>
                     <br />
-                    <Header as='h1' inverted textAlign='center'><b>ASESORAMOS TU VIDEOJUEGO</b></Header>
+                    <Header as='h1' inverted textAlign='center'><b>{t('services.adviseHeader')}</b></Header>
                     <br />
                     <Grid centered>
                         <Image src={Description} height='200' />
@@ -38,7 +39,7 @@ const Advise = () => {
             <br/>
             <br/>
             <div>
-                <Header as='h3' inverted textAlign='center'>REQUISITOS</Header>
+                <Header as='h3' inverted textAlign='center'>{t('services.requirements')}</Header>
                 <Grid columns={3} doubling padded relaxed='very'>
                     <Grid.Column>
                         <Image src={Step1} />
@@ -56,7 +57,7 @@ const Advise = () => {
                 <Container text>
                     <br />
                     <Segment style={{ backgroundColor: 'rgb(42, 39, 77)' }} inverted>
-                        Para mas informacion
+                        {t('services.moreInfo')}
                 </Segment>
                 </Container>
                 <br />
@@ -66,4 +67,4 @@ const Advise = () => {
     )
 }
 
-export default Advise
+export default withTranslation()(Advise)
