@@ -19,26 +19,21 @@ test('handles search input changes', async () => {
 
 test('clears search when value becomes empty after debounce', async () => {
   jest.useFakeTimers();
-  const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-  render(<SearchCategory source={{}} />);
-  const searchInput = screen.getByRole('textbox');
-  
-  await user.type(searchInput, 'a');
-  // Advance past the debounce
-  jest.advanceTimersByTime(600);
-  
-  await user.clear(searchInput);
-  // Advance past the debounce
-  jest.advanceTimersByTime(600);
-  
-  // Should handle empty input gracefully (resetComponent called)
-  expect(searchInput).toHaveValue('');
-  
-  jest.useRealTimers();
+  try {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    render(<SearchCategory source={{}} />);
+    const searchInput = screen.getByRole('textbox');
+    
+    await user.type(searchInput, 'a');
+    jest.advanceTimersByTime(600);
+    
+    await user.clear(searchInput);
+    jest.advanceTimersByTime(600);
+    
+    expect(searchInput).toHaveValue('');
+  } finally {
+    jest.useRealTimers();
+  }
 });
 
-test('renders with an empty source prop', () => {
-  render(<SearchCategory source={{}} />);
-  const searchInput = screen.getByRole('textbox');
-  expect(searchInput).toBeInTheDocument();
-});
+

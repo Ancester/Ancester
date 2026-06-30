@@ -12,6 +12,7 @@ const CATEGORY_VALUES = {
   effects: 'Efectos',
   characters: 'Personajes',
   skins: 'Vestuarios',
+  other: 'Otros',
 };
 
 const CATEGORY_IDS = Object.keys(CATEGORY_VALUES);

@@ -11,7 +11,9 @@ const rightItems = [
 ];
 
 describe('desktop layout', () => {
+  let originalMatchMedia;
   beforeEach(() => {
+    originalMatchMedia = window.matchMedia;
     window.matchMedia = jest.fn().mockImplementation((query) => ({
       matches: query.includes('min-width'),
       media: query,
@@ -22,6 +24,9 @@ describe('desktop layout', () => {
       removeEventListener: jest.fn(),
       dispatchEvent: jest.fn(),
     }));
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchMedia;
   });
 
   test('renders nav with sign in link', () => {
@@ -84,7 +89,9 @@ describe('desktop layout', () => {
 });
 
 describe('mobile layout', () => {
+  let originalMatchMedia;
   beforeEach(() => {
+    originalMatchMedia = window.matchMedia;
     window.matchMedia = jest.fn().mockImplementation((query) => ({
       matches: query.includes('max-width'),
       media: query,
@@ -95,6 +102,9 @@ describe('mobile layout', () => {
       removeEventListener: jest.fn(),
       dispatchEvent: jest.fn(),
     }));
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchMedia;
   });
 
   test('renders sign in link on mobile', () => {

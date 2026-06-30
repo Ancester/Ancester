@@ -19,10 +19,10 @@ test('translations exist for common keys', () => {
   expect(i18n.exists('footer.rights')).toBe(true);
 });
 
-test('can change language to English', () => {
-  i18n.changeLanguage('en');
+test('can change language to English', async () => {
+  await i18n.changeLanguage('en');
   expect(i18n.language).toBe('en');
   
-  i18n.changeLanguage('es');
+  await i18n.changeLanguage('es');
   expect(i18n.language).toBe('es');
 });
