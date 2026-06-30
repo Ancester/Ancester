@@ -10,11 +10,17 @@ test('renders search input without crashing', () => {
 });
 
 test('handles search input changes', async () => {
-  const user = userEvent.setup();
-  render(<SearchCategory source={{}} />);
-  const searchInput = screen.getByRole('textbox');
-  await user.type(searchInput, 'test query');
-  expect(searchInput).toHaveValue('test query');
+  jest.useFakeTimers();
+  try {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    render(<SearchCategory source={{}} />);
+    const searchInput = screen.getByRole('textbox');
+    await user.type(searchInput, 'test query');
+    jest.advanceTimersByTime(600);
+    expect(searchInput).toHaveValue('test query');
+  } finally {
+    jest.useRealTimers();
+  }
 });
 
 test('clears search when value becomes empty after debounce', async () => {
