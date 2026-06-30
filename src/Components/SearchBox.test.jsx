@@ -133,13 +133,12 @@ test('updates value when a result is clicked', async () => {
     
     const lastResultsCall = setStateSpy.mock.calls.filter(args => args[0] && args[0].results).pop();
     const result = lastResultsCall && lastResultsCall[0].results.categoryA && lastResultsCall[0].results.categoryA.results[0];
-    if (result) {
-      await act(async () => {
-        const comp = setStateSpy.mock.instances[0];
-        comp.handleResultSelect(null, { result });
-      });
-      expect(searchInput).toHaveValue('Apple');
-    }
+    expect(result).toEqual(expect.objectContaining({ title: 'Apple' }));
+    await act(async () => {
+      const comp = setStateSpy.mock.instances[0];
+      comp.handleResultSelect(null, { result });
+    });
+    expect(searchInput).toHaveValue('Apple');
   } finally {
     jest.useRealTimers();
     SearchCategory.prototype.setState.mockRestore();
@@ -163,14 +162,12 @@ test('does not search until debounce leading edge fires', async () => {
     
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     await user.type(searchInput, 'ap');
-    jest.advanceTimersByTime(300);
     
-    const callsAfter300 = setStateSpy.mock.calls.filter(args => args[0] && args[0].isLoading === false);
-    expect(callsAfter300.length).toBeGreaterThanOrEqual(1);
+    const loadingCalls = setStateSpy.mock.calls.filter(args => args[0] && args[0].isLoading === true);
+    expect(loadingCalls.length).toBeGreaterThanOrEqual(1);
   } finally {
     jest.useRealTimers();
     SearchCategory.prototype.setState.mockRestore();
   }
 });
-
 

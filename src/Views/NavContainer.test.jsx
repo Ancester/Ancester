@@ -193,6 +193,8 @@ describe('mobile layout', () => {
     fireEvent.click(hamburger);
     expect(screen.getByText('nav.academy')).toBeInTheDocument();
     fireEvent.click(hamburger);
+    const pusher = container.querySelector('.pusher');
+    expect(pusher.className).not.toContain('dimmed');
   });
 
   test('renders game links on mobile', () => {

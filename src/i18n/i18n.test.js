@@ -58,12 +58,14 @@ test('no empty-string translation values', () => {
   const emptyInEn = [];
   const emptyInEs = [];
   
-  const checkEmpty = (obj, acc) => {
-    for (const key of Object.keys(obj)) {
+  const checkEmpty = (obj, acc, prefix = '') => {
+    const keys = Array.isArray(obj) ? obj.keys() : Object.keys(obj);
+    for (const key of keys) {
+      const fullKey = prefix ? `${prefix}.${key}` : key;
       if (obj[key] === '') {
-        acc.push(key);
-      } else if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-        checkEmpty(obj[key], acc);
+        acc.push(fullKey);
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        checkEmpty(obj[key], acc, fullKey);
       }
     }
   };

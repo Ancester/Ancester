@@ -1,4 +1,4 @@
-jest.doMock('faker', () => ({
+jest.mock('faker', () => ({
   company: {
     companyName: () => 'ACME Corp',
     catchPhrase: () => 'Great product',
@@ -82,13 +82,12 @@ test('updates value when a result is selected', async () => {
     jest.advanceTimersByTime(1200);
     
     const lastCall = SearchStandard.prototype.setState.mock.calls.pop();
-    if (lastCall && lastCall[0].results && lastCall[0].results.length > 0) {
-      await act(async () => {
-        const comp = SearchStandard.prototype.setState.mock.instances[0];
-        comp.handleResultSelect(null, { result: lastCall[0].results[0] });
-      });
-      expect(searchInput).toHaveValue('ACME Corp');
-    }
+    expect(lastCall[0].results.length).toBeGreaterThan(0);
+    await act(async () => {
+      const comp = SearchStandard.prototype.setState.mock.instances[0];
+      comp.handleResultSelect(null, { result: lastCall[0].results[0] });
+    });
+    expect(searchInput).toHaveValue('ACME Corp');
   } finally {
     jest.useRealTimers();
     SearchStandard.prototype.setState.mockRestore();
@@ -128,10 +127,9 @@ test('shows loading state while debounce is pending', async () => {
     const searchInput = screen.getByRole('textbox');
     
     await user.type(searchInput, 'acme');
-    jest.advanceTimersByTime(1200);
     
     const loadingCalls = SearchStandard.prototype.setState.mock.calls.filter(
-      args => args[0] && args[0].isLoading === false
+      args => args[0] && args[0].isLoading === true
     );
     expect(loadingCalls.length).toBeGreaterThanOrEqual(1);
   } finally {

@@ -6,28 +6,30 @@ test('accessId and APIkey are strings sourced from environment', () => {
 });
 
 test('secrets propagate values from process.env', () => {
-  const originalAccessId = process.env.ACCESS_ID;
-  const originalApiKey = process.env.API_KEY;
+  const originalAccessId = process.env.REACT_APP_ACCESS_ID;
+  const originalApiKey = process.env.REACT_APP_API_KEY;
 
-  process.env.ACCESS_ID = 'test-access-id';
-  process.env.API_KEY = 'test-api-key';
+  try {
+    process.env.REACT_APP_ACCESS_ID = 'test-access-id';
+    process.env.REACT_APP_API_KEY = 'test-api-key';
 
-  jest.resetModules();
-  // eslint-disable-next-line global-require
-  const secrets = require('./secrets');
+    jest.resetModules();
+    // eslint-disable-next-line global-require
+    const secrets = require('./secrets');
 
-  expect(secrets.accessId).toBe('test-access-id');
-  expect(secrets.APIkey).toBe('test-api-key');
+    expect(secrets.accessId).toBe('test-access-id');
+    expect(secrets.APIkey).toBe('test-api-key');
+  } finally {
+    if (originalAccessId === undefined) {
+      delete process.env.REACT_APP_ACCESS_ID;
+    } else {
+      process.env.REACT_APP_ACCESS_ID = originalAccessId;
+    }
 
-  if (originalAccessId === undefined) {
-    delete process.env.ACCESS_ID;
-  } else {
-    process.env.ACCESS_ID = originalAccessId;
-  }
-
-  if (originalApiKey === undefined) {
-    delete process.env.API_KEY;
-  } else {
-    process.env.API_KEY = originalApiKey;
+    if (originalApiKey === undefined) {
+      delete process.env.REACT_APP_API_KEY;
+    } else {
+      process.env.REACT_APP_API_KEY = originalApiKey;
+    }
   }
 });

@@ -31,7 +31,7 @@ test('renders category section headers using translation keys', async () => {
 });
 
 test('handleChange filters to specific category', async () => {
-  const { container } = render(<Marketplace />);
+  render(<Marketplace />);
   const dropdowns = screen.getAllByRole('combobox');
   const filterDropdown = dropdowns[0];
   
@@ -39,14 +39,13 @@ test('handleChange filters to specific category', async () => {
   const weaponsOption = screen.getAllByText('marketplace.weapons');
   fireEvent.click(weaponsOption[weaponsOption.length - 1]);
   
-  await new Promise(r => setTimeout(r, 100));
-  
-  const buyButtons = screen.getAllByText('marketplace.buy');
-  expect(buyButtons.length).toBeGreaterThanOrEqual(1);
+  await waitFor(() => {
+    expect(screen.getAllByText('marketplace.buy').length).toBeGreaterThanOrEqual(1);
+  });
 });
 
 test('handleChange uses category value when not all', async () => {
-  const { container } = render(<Marketplace />);
+  render(<Marketplace />);
   const dropdowns = screen.getAllByRole('combobox');
   const filterDropdown = dropdowns[0];
   
@@ -54,9 +53,9 @@ test('handleChange uses category value when not all', async () => {
   const effectsOption = screen.getAllByText('marketplace.effects');
   fireEvent.click(effectsOption[effectsOption.length - 1]);
   
-  await new Promise(r => setTimeout(r, 100));
-  
-  expect(screen.getAllByText('marketplace.buy').length).toBeGreaterThanOrEqual(1);
+  await waitFor(() => {
+    expect(screen.getAllByText('marketplace.buy').length).toBeGreaterThanOrEqual(1);
+  });
 });
 
 test('handleChange resets to all categories', async () => {
@@ -76,8 +75,7 @@ test('PollinatedImage falls back on error', () => {
   const { container } = render(<Marketplace />);
   const images = container.querySelectorAll('img');
   const cardImage = Array.from(images).find(img => img.classList.contains('visible') || img.classList.contains('content'));
-  if (cardImage) {
-    fireEvent.error(cardImage);
-  }
-  expect(container.querySelector('img')).toBeInTheDocument();
+  expect(cardImage).toBeInTheDocument();
+  fireEvent.error(cardImage);
+  expect(cardImage).toHaveAttribute('src', 'https://react.semantic-ui.com/images/wireframe/image.png');
 });

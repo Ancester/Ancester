@@ -39,13 +39,11 @@ test('submit button is enabled when all fields are filled', async () => {
   await user.type(screen.getByPlaceholderText('contacto.emailPlaceholder'), 'test@example.com');
   
   const dropdown = document.querySelector('.ui.selection.dropdown');
-  if (dropdown) {
-    fireEvent.click(dropdown);
-    const menuItem = dropdown.querySelector('.item');
-    if (menuItem) {
-      fireEvent.click(menuItem);
-    }
-  }
+  expect(dropdown).toBeInTheDocument();
+  fireEvent.click(dropdown);
+  const menuItem = dropdown.querySelector('.item');
+  expect(menuItem).toBeInTheDocument();
+  fireEvent.click(menuItem);
   
   await user.type(screen.getByPlaceholderText('contacto.messagePlaceholder'), 'Test message');
   

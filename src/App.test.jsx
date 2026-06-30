@@ -140,4 +140,5 @@ test('changeLanguage function is wired to NavContainer', () => {
   fireEvent.click(langTexts[0]);
   const esOption = screen.getByText('language.es');
   fireEvent.click(esOption);
+  expect(screen.getAllByText('language.es').length).toBeGreaterThanOrEqual(1);
 });
