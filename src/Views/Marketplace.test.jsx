@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Marketplace from './Marketplace';
 
 test('renders marketplace with filter and sell button', () => {
@@ -10,9 +10,6 @@ test('renders marketplace with filter and sell button', () => {
 
 test('renders filter options with translated category names', () => {
   render(<Marketplace />);
-  // These keys match the locale file structure — the mock t() returns the key,
-  // but a real i18n instance would return translated strings.
-  // This test verifies the translation keys are correctly wired to the component.
   const weapons = screen.getAllByText('marketplace.weapons');
   expect(weapons.length).toBeGreaterThanOrEqual(1);
   const scenarios = screen.getAllByText('marketplace.scenarios');
@@ -23,16 +20,62 @@ test('renders filter options with translated category names', () => {
 
 test('renders buy buttons on cards after data loads with translated content', async () => {
   render(<Marketplace />);
-  // After componentDidMount, cards render with buy buttons using translation keys
   const buyButtons = await screen.findAllByText('marketplace.buy');
   expect(buyButtons.length).toBeGreaterThanOrEqual(1);
 });
 
 test('renders category section headers using translation keys', async () => {
   render(<Marketplace />);
-  // Section headers use t() with stable category keys (weapons, scenarios, etc.)
-  // These appear both as section headers AND in the filter dropdown,
-  // so use getAllByText and check at least one exists
   const weaponsSections = await screen.findAllByText('marketplace.weapons');
   expect(weaponsSections.length).toBeGreaterThanOrEqual(1);
+});
+
+test('handleChange filters to specific category', async () => {
+  render(<Marketplace />);
+  const dropdowns = screen.getAllByRole('combobox');
+  const filterDropdown = dropdowns[0];
+  
+  fireEvent.click(filterDropdown);
+  const weaponsOption = screen.getAllByText('marketplace.weapons');
+  fireEvent.click(weaponsOption[weaponsOption.length - 1]);
+  
+  await waitFor(() => {
+    expect(screen.getAllByText('marketplace.buy').length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+test('handleChange uses category value when not all', async () => {
+  render(<Marketplace />);
+  const dropdowns = screen.getAllByRole('combobox');
+  const filterDropdown = dropdowns[0];
+  
+  fireEvent.click(filterDropdown);
+  const effectsOption = screen.getAllByText('marketplace.effects');
+  fireEvent.click(effectsOption[effectsOption.length - 1]);
+  
+  await waitFor(() => {
+    expect(screen.getAllByText('marketplace.buy').length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+test('handleChange resets to all categories', async () => {
+  render(<Marketplace />);
+  const dropdowns = screen.getAllByRole('combobox');
+  const filterDropdown = dropdowns[0];
+  fireEvent.click(filterDropdown);
+  const allOptions = screen.getAllByText('marketplace.all');
+  fireEvent.click(allOptions[allOptions.length - 1]);
+  await waitFor(() => {
+    const buyButtons = screen.getAllByText('marketplace.buy');
+    expect(buyButtons.length).toBeGreaterThanOrEqual(5);
+  });
+});
+
+test('PollinatedImage falls back on error', () => {
+  const { container } = render(<Marketplace />);
+  const images = container.querySelectorAll('img');
+  const cardImage = Array.from(images).find(img => img.classList.contains('visible') || img.classList.contains('content'));
+  expect(cardImage).toBeInTheDocument();
+  fireEvent.error(cardImage);
+  expect(cardImage).toHaveAttribute('src', 'https://react.semantic-ui.com/images/wireframe/image.png');
 });
