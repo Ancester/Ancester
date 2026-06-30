@@ -1,25 +1,37 @@
 /**
  * @jest-environment jsdom
  */
-import { register, unregister } from './serviceWorker';
 
-// In jsdom, navigator exists but navigator.serviceWorker is undefined,
-// so 'serviceWorker' in navigator returns false, functions return early.
+describe('serviceWorker', () => {
+  const originalEnv = process.env.NODE_ENV;
 
-beforeEach(() => {
-  // Ensure we're in test environment
-  process.env.NODE_ENV = 'test';
-});
+  afterEach(() => {
+    process.env.NODE_ENV = originalEnv;
+    jest.restoreAllMocks();
+    delete global.fetch;
+  });
 
-test('register does not throw when called', () => {
-  expect(() => register()).not.toThrow();
-});
+  test('register does not throw when called in test env', () => {
+    process.env.NODE_ENV = 'test';
+    const { register } = require('./serviceWorker');
+    expect(() => register()).not.toThrow();
+  });
 
-test('unregister returns undefined when serviceWorker is not available', () => {
-  expect(unregister()).toBeUndefined();
-});
+  test('unregister returns undefined when serviceWorker is not available', () => {
+    const { unregister } = require('./serviceWorker');
+    expect(unregister()).toBeUndefined();
+  });
 
-test('register with config object does not throw', () => {
-  expect(() => register({})).not.toThrow();
-  expect(() => register({ onUpdate: jest.fn(), onSuccess: jest.fn() })).not.toThrow();
+  test('register with config object does not throw', () => {
+    process.env.NODE_ENV = 'test';
+    const { register } = require('./serviceWorker');
+    expect(() => register({})).not.toThrow();
+    expect(() => register({ onUpdate: jest.fn(), onSuccess: jest.fn() })).not.toThrow();
+  });
+
+  test('register is safe to call multiple times', () => {
+    process.env.NODE_ENV = 'test';
+    const { register } = require('./serviceWorker');
+    expect(() => { register(); register(); }).not.toThrow();
+  });
 });

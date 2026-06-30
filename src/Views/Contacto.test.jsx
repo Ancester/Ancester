@@ -18,6 +18,40 @@ test('submit button is disabled when fields are empty', () => {
   expect(submitBtn).toBeDisabled();
 });
 
+test('submit button remains disabled with partial input', async () => {
+  const user = userEvent.setup();
+  render(<Contacto />);
+  const submitBtn = screen.getByText('contacto.submitButton').closest('button');
+  
+  await user.type(screen.getByPlaceholderText('contacto.namePlaceholder'), 'Test Name');
+  expect(submitBtn).toBeDisabled();
+  
+  await user.type(screen.getByPlaceholderText('contacto.emailPlaceholder'), 'test@example.com');
+  expect(submitBtn).toBeDisabled();
+});
+
+test('submit button is enabled when all fields are filled', async () => {
+  const user = userEvent.setup();
+  render(<Contacto />);
+  const submitBtn = screen.getByText('contacto.submitButton').closest('button');
+  
+  await user.type(screen.getByPlaceholderText('contacto.namePlaceholder'), 'Test Name');
+  await user.type(screen.getByPlaceholderText('contacto.emailPlaceholder'), 'test@example.com');
+  
+  const dropdown = document.querySelector('.ui.selection.dropdown');
+  if (dropdown) {
+    fireEvent.click(dropdown);
+    const menuItem = dropdown.querySelector('.item');
+    if (menuItem) {
+      fireEvent.click(menuItem);
+    }
+  }
+  
+  await user.type(screen.getByPlaceholderText('contacto.messagePlaceholder'), 'Test message');
+  
+  expect(submitBtn).not.toBeDisabled();
+});
+
 test('inputs update on user typing', async () => {
   const user = userEvent.setup();
   render(<Contacto />);
@@ -27,6 +61,14 @@ test('inputs update on user typing', async () => {
 
   await user.type(screen.getByPlaceholderText('contacto.emailPlaceholder'), 'test@example.com');
   expect(screen.getByPlaceholderText('contacto.emailPlaceholder')).toHaveValue('test@example.com');
+});
+
+test('submitting with empty fields does not show success message', () => {
+  render(<Contacto />);
+  const form = document.querySelector('form');
+  fireEvent.submit(form);
+  expect(screen.queryByText('contacto.successTitle')).not.toBeInTheDocument();
+  expect(screen.getByText('contacto.title')).toBeInTheDocument();
 });
 
 test('form submission shows success message when all fields filled', () => {

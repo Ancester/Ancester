@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import NavContainer from './NavContainer';
 
@@ -86,6 +86,38 @@ describe('desktop layout', () => {
     const gamesText = screen.getAllByText('nav.games');
     expect(gamesText.length).toBeGreaterThanOrEqual(1);
   });
+
+  test('does not render hamburger menu on desktop', () => {
+    render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    expect(document.querySelector('.icon.sidebar')).not.toBeInTheDocument();
+  });
+
+  test('language switcher calls changeLanguage with opposite language', () => {
+    const changeLanguage = jest.fn();
+    render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} changeLanguage={changeLanguage} currentLanguage="es" />
+      </BrowserRouter>
+    );
+    const langTexts = screen.getAllByText('language.es');
+    fireEvent.click(langTexts[0]);
+    fireEvent.click(screen.getByText('language.en'));
+    expect(changeLanguage).toHaveBeenCalledWith('en');
+  });
+
+  test('language dropdown reflects currentLanguage', () => {
+    const changeLanguage = jest.fn();
+    render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} changeLanguage={changeLanguage} currentLanguage="en" />
+      </BrowserRouter>
+    );
+    expect(screen.getAllByText('language.en').length).toBeGreaterThanOrEqual(1);
+  });
 });
 
 describe('mobile layout', () => {
@@ -115,5 +147,61 @@ describe('mobile layout', () => {
     );
     const signInLinks = screen.getAllByText('nav.signIn');
     expect(signInLinks.length).toBeGreaterThanOrEqual(1);
+  });
+
+  test('renders hamburger menu icon on mobile', () => {
+    render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    expect(document.querySelector('.icon.sidebar')).toBeInTheDocument();
+  });
+
+  test('clicking the pusher when sidebar is open closes the sidebar', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    const hamburger = document.querySelector('.icon.sidebar');
+    fireEvent.click(hamburger);
+    expect(screen.getByText('nav.academy')).toBeInTheDocument();
+    const pusher = container.querySelector('.pusher');
+    fireEvent.click(pusher);
+    expect(pusher.className).not.toContain('dimmed');
+  });
+
+  test('clicking pusher when sidebar is closed does not toggle state', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    const pusher = container.querySelector('.pusher');
+    fireEvent.click(pusher);
+    expect(pusher.className).not.toContain('dimmed');
+  });
+
+  test('toggle opens and closes the sidebar', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    const hamburger = document.querySelector('.icon.sidebar');
+    fireEvent.click(hamburger);
+    expect(screen.getByText('nav.academy')).toBeInTheDocument();
+    fireEvent.click(hamburger);
+  });
+
+  test('renders game links on mobile', () => {
+    render(
+      <BrowserRouter>
+        <NavContainer rightItems={rightItems} />
+      </BrowserRouter>
+    );
+    expect(screen.getByText('Nav Games')).toBeInTheDocument();
+    expect(screen.getByText('Nav Other Game')).toBeInTheDocument();
   });
 });

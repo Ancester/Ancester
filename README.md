@@ -75,6 +75,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app in the brows
 |--------|-------------|
 | `npm start` | Start development server |
 | `npm test` | Run tests in watch mode |
+| `npm run coverage` | Run tests with coverage report (non-interactive) |
 | `npm run build` | Create production build |
 | `npm run deploy` | Deploy to GitHub Pages |
 | `npm run eject` | Eject from Create React App (one-way) |
@@ -116,6 +117,12 @@ Run all tests:
 
 ```bash
 npm test
+```
+
+Run all tests with a coverage report (non-interactive):
+
+```bash
+npm run coverage
 ```
 
 Tests cover:
